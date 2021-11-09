@@ -25,9 +25,13 @@ A resposta da pergunta é referente à variável criada anteriormente*/
 
 console.log('Olá, meu nome é', nome, 'e eu tenho', idade, 'anos de idade.')
 
-console.log('Você está se sentindo feliz hoje?' + ' Sim')
-console.log('Toda hora é hora de um lanche?' + ' Não')
-console.log('Você pretende trabalhar para o exterior?' + ' Sim')
+let feliz = prompt('Você está se sentindo feliz hoje?')
+let lanche = prompt('Toda hora é hora de um lanche?')
+let exterior = prompt('Você pretende trabalhar para empresas no exterior?')
+
+console.log('Você está se sentindo feliz hoje?', feliz)
+console.log('Toda hora é hora de um lanche?' + lanche)
+console.log('Você pretende trabalhar para empresas no exterior?' + exterior)
 
 let a = 10
 let b = 25
