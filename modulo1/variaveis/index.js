@@ -32,13 +32,26 @@ let exterior = prompt('Você pretende trabalhar para empresas no exterior?')
 console.log('Você está se sentindo feliz hoje?', feliz)
 console.log('Toda hora é hora de um lanche?' + lanche)
 console.log('Você pretende trabalhar para empresas no exterior?' + exterior)
+{
+  let a = 10
+  let b = 25
 
-let a = 10
-let b = 25
+  let c = a
+  a = b
+  b = c
 
-let c = a
-a = b
-b = c
+  console.log('O novo valor de a é', a) // O novo valor de a é 25
+  console.log('O novo valor de b é', b) // O novo valor de b é 10
+}
+//Desafio da Aula
 
-console.log('O novo valor de a é', a) // O novo valor de a é 25
-console.log('O novo valor de b é', b) // O novo valor de b é 10
+{
+  let a = 15
+  let b = 22
+  let c = a + b
+  let d = a * b
+
+  console.log(c)
+
+  console.log(d)
+}
