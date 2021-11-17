@@ -42,9 +42,7 @@ Chocolate `)
 
   const comidaFavorita = prompt('Qual sua comida favorita?')
 
-  comidasPreferidas.splice(1, 1)
-
-  comidasPreferidas.push(comidaFavorita)
+  comidasPreferidas[1] = comidaFavorita
 
   console.log(comidasPreferidas)
 }
@@ -76,3 +74,21 @@ let indiceDeTarefas = Number(
 listaDeTarefas.splice(indiceDeTarefas, 1)
 
 console.log(listaDeTarefas)
+
+//====================================================================================================
+
+//DESAFIO 01:
+let frase = prompt('Digite uma sentença pequena:')
+
+let fraseEmSplit = frase.split(' ')
+console.log(fraseEmSplit)
+
+//====================================================================================================
+
+//DESAFIO 02
+
+let frutas = ['Banana', 'Morango', 'Abacaxi', 'Laranja', 'Ameixa']
+
+let frutaAbacaxi = frutas.indexOf('Abacaxi')
+
+console.log(frutaAbacaxi)
