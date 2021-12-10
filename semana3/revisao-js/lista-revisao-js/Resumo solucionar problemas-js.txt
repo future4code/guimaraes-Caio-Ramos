@@ -1,0 +1,9 @@
+Como solucionar problemas de programação.
+
+1) Identifique o problema: ao ser apresentado a determinada situação, procure identificar as palvras-chave que o cliente ou a questão emite, de modo que fique mais fácil entender o que deve ser feito.
+2) Retire informações relevantes: a partir da identificação do problema nós já podemos rascunhar nomes de variáveis e vetores, além de já declarar as ações que serão realizadas através das funções ou avaliar as condições para ativação das ações. É um grande esboço, como um aquecimento para redigir uma redação.
+3)Pensar nas entradas e saídas: organizar dentro de variáveis, arrays, ou objetos os dados que o programa vai receber para trabalhar de forma mais organizada. É importante também visualizar como serão as saídas, ou seja, o que o código vai "cuspir" após o processamento de dados.
+4) Fazer um esquema visual: Antes de rodar o código é importante criar cenários para avaliar como o programa vai se comportar. Uma forma de criar cenários é através de diagramas. Pode ser no computador ou com papel e caneta mesmo! A partir da estruturação do diagrama nós podemos colocar  as saídas esperadas e trabalhar com uma melhor orientação.
+5) Criar um código feio: primeiramente nós precisamos que o código funcione! A partir daí nós podemos aparar as arestas e ir deixando ele mais agradável de ler e até mais  leve. É preciso treinar as várias possibilidades na IDE que a pessoa possuir, como o VSCode ou algum site online.
+6) Testar na força-bruta: Só podemos saber se o código funciona testando. Rode diversas vezes com as variáveis que tiver à disposição para entender se ele roda lisinho. É importante escrever as variáveis no idioma pt-BR para que outros programadores possam entender o que foi feito.
+7) Refatorar: No sentido de edição de código.  Busque diminuir a redundância nos códigos, observe a indentação, renomeie as variáveis e funções de forma intuitiva.

@@ -123,29 +123,67 @@ function retornaSegundoMaiorESegundoMenor(array) {
 }
 
 // EXERCÍCIO 11
-function retornaChamadaDeFilme(filme) {}
+function retornaChamadaDeFilme(filme) {
+  const filmeBom = {
+    nome: 'O Diabo Veste Prada',
+    ano: 2006,
+    diretor: 'David Frankel',
+    atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+  }
+  return `Venha assistir ao filme ${filmeBom.nome}, de ${filmeBom.ano}, dirigido por ${filmeBom.diretor} e estrelado por ${filmeBom.atores[0]}, ${filmeBom.atores[1]}, ${filmeBom.atores[2]}, ${filmeBom.atores[3]}.`
+}
 
 // EXERCÍCIO 12
-function retornaPessoaAnonimizada(pessoa) {}
+function retornaPessoaAnonimizada(pessoa) {
+  const novosDados = {
+    ...pessoa,
+    nome: 'ANÔNIMO'
+  }
+  return novosDados
+}
 
 // EXERCÍCIO 13A
-function retornaPessoasAutorizadas(pessoas) {}
+function retornaPessoasAutorizadas(pessoas) {
+  let queroEntrar = pessoas.filter(pessoa => {
+    return pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60
+  })
+
+  return queroEntrar
+}
 
 // EXERCÍCIO 13B
-function retornaPessoasNaoAutorizadas(pessoas) {}
+function retornaPessoasNaoAutorizadas(pessoas) {
+  let naoPode = pessoas.filter(pessoa => {
+    return !(pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60)
+  })
+
+  return naoPode
+}
 
 // EXERCÍCIO 14
-function retornaContasComSaldoAtualizado(contas) {}
+function retornaContasComSaldoAtualizado(contas) {
+  contas[0].saldoTotal = 500
+  contas[1].saldoTotal = 6260
+  contas[2].saldoTotal = -3340
+  contas[3].saldoTotal = -1900
+  contas[4].saldoTotal = 1300
+  contas[5].saldoTotal = 1400
+
+  contas[0].compras = []
+  contas[1].compras = []
+  contas[2].compras = []
+  contas[3].compras = []
+  contas[4].compras = []
+  contas[5].compras = []
+
+  return contas
+}
 
 // EXERCÍCIO 15A
-function retornaArrayOrdenadoAlfabeticamente(consultas) {}
+function retornaArrayOrdenadoAlfabeticamente(consultas) {
+  consultas.sort((a, b) => (a.nome > b.nome ? 1 : -1))
+  return consultas
+}
 
 // EXERCÍCIO 15B
-function retornaArrayOrdenadoPorData(consultas) {
-  const pacientes = [
-    { nome: 'João', dataDaConsulta: '01/10/2021' },
-    { nome: 'Pedro', dataDaConsulta: '02/07/2021' },
-    { nome: 'Paula', dataDaConsulta: '03/11/2021' },
-    { nome: 'Márcia', dataDaConsulta: '04/05/2021' }
-  ]
-}
+function retornaArrayOrdenadoPorData(consultas) {}
