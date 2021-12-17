@@ -1,0 +1,20 @@
+body {
+  background-color: rgb(218, 91, 44);
+  background-image: url(./img/pexels-erik-mclean-7360387-redimensionada.jpg);
+}
+h1 {
+  color: silver;
+  font-family: Helvetica;
+  font-size: 14pt;
+}
+
+p {
+  color: silver;
+  font-family: Helvetica;
+  font-size: 14pt;
+}
+
+div img {
+  width: 25px;
+  height: 25px;
+}
