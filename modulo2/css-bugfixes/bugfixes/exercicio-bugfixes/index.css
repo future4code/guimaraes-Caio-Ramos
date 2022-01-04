@@ -133,6 +133,9 @@ td button {
 .ao-comprar:active {
   color: whitesmoke;
 }
+.center-table {
+  margin: 25px 50px 75px 200px;
+}
 
 #back-button {
   background-color: white;
