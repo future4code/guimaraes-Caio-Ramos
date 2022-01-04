@@ -73,6 +73,10 @@ div img {
 #container-de-descricao > ol {
   padding: 15px 0px;
 }
+#container-de-descricao > p {
+  width: 180px;
+  text-align: center;
+}
 
 #container-para-comprar {
   background-color: #e7eb90;
@@ -115,7 +119,7 @@ td button {
 
 .container-do-search {
   margin-top: 20px;
-  height: 100px;
+  height: 20px;
 }
 
 #back-button {
