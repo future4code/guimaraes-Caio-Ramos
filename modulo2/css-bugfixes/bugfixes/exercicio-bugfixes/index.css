@@ -41,6 +41,9 @@ div > p:first-child {
   border-radius: 5px;
   font-size: 20px;
   color: white;
+  position: relative;
+  top: 100px;
+  right: 420px;
 }
 
 .botao-amarelo:hover {
@@ -65,6 +68,8 @@ div > p:first-child {
 #container-de-descricao {
   background-color: #2274a5;
   color: white;
+  padding: 30px;
+  list-style-position: inside;
 }
 
 #container-de-descricao > ol {
@@ -73,8 +78,6 @@ div > p:first-child {
 #container-de-descricao > p {
   width: 180px;
   text-align: center;
-  flex-direction: column;
-  justify-content: center;
 }
 
 #container-para-comprar {
