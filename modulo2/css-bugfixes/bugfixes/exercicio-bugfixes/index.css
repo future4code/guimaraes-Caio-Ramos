@@ -7,6 +7,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -119,6 +120,7 @@ td button {
 .container-do-search {
   margin-top: 20px;
   height: 20px;
+  /* border: 5px solid black; */
 }
 .icone {
   width: 80px;
