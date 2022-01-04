@@ -99,6 +99,11 @@ table {
   width: 60%;
   text-align: center;
 }
+.clothes-window {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
 
 td button {
   background-color: #fadf63;
