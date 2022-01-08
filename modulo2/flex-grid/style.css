@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  display: flex;
+  height: 90vh;
+}
+.menu-desktop {
+  background-color: #f2d0e0;
+  width: 300px;
+  height: 100%;
+}
+
+nav ul li {
+  display: block;
+  text-decoration: none;
+  margin-left: 37px;
+  text-transform: uppercase;
+  margin-top: -20px;
+}
+
+nav ul li:hover {
+  color: violet;
+  font-size: 18px;
+}
+nav img {
+  margin-left: 150px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.seta {
+  display: flex;
+  margin-left: 270px;
+  margin-top: -23px;
+}
+
+#logo-e-botao > img {
+  width: 50px;
+  height: auto;
+  margin: 3px;
+}
+
+#logo-e-botao {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: mediumvioletred;
+}
+
+#mostruario-grid {
+  display: grid;
+  padding-top: 10px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+#reduzir-grid {
+  width: 260px;
+  height: 270px;
+}
+
+#ajuste-bordas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  background-color: mediumvioletred;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
