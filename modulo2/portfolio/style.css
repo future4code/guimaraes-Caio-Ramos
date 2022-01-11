@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* Configuração da Home */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: whitesmoke;
+  background-image: linear-gradient(90deg, #355070ff, #6d597aff, #b56576ff);
+}
+
+header {
+  text-align: center;
+}
+header > p {
+  margin: 1px;
+}
+nav {
+  padding: 3px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+nav > a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-weight: bold;
+  margin-right: 30px;
+}
+article {
+  margin: 10px;
+  padding: 5px;
+}
+footer {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: whitesmoke;
+  margin: 10px;
+  padding: 5px;
+}
+footer > img {
+  width: 25px;
+  height: 25px;
+}
+footer > a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-weight: bold;
+  margin-right: 30px;
+}
+
+/* Paletas do Portifolio:
+--y-in-mn-blue: #355070ff;
+--chinese-violet: #6d597aff;
+--rose-dust: #b56576ff;
+--candy-pink: #e56b6fff;
+--tumbleweed: #eaac8bff;  */
