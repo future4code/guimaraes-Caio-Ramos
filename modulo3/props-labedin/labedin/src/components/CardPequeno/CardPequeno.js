@@ -2,9 +2,9 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-/* const SmallcardTitle = styled.contato`
+const SmallcardTitle = styled.p`
   margin-bottom: 15px;
-` */
+`
 const SmallcardParagraph = styled.p`
   font-family: Arial, Helvetica, sans-serif;
 `
@@ -15,6 +15,10 @@ const SmallcardContainer = styled.div`
   padding: 20px 10px;
   margin-bottom: 10px;
   height: 200px;
+  img {
+    height: 25px;
+    width: 25px;
+  }
 `
 
 const SmallcardSubContainer = styled.div`
@@ -27,13 +31,9 @@ function CardPequeno(props) {
   return (
     <SmallcardContainer>
       <SmallcardSubContainer>
-        {/* <SmallcardTitle>{props.contato}</SmallcardTitle> */}
-        <SmallcardParagraph>{props.email}</SmallcardParagraph>
-      </SmallcardSubContainer>
-
-      <SmallcardSubContainer>
-        {/* <SmallcardTitle>{props.contato}</SmallcardTitle> */}
-        <SmallcardParagraph>{props.endereco}</SmallcardParagraph>
+        <img src={props.imagem} />
+        <SmallcardTitle>{props.titulo}</SmallcardTitle>
+        <SmallcardParagraph>{props.texto}</SmallcardParagraph>
       </SmallcardSubContainer>
     </SmallcardContainer>
   )

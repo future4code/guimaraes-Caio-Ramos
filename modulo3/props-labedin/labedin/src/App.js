@@ -9,11 +9,17 @@ function App() {
     <div className="App">
       <div className="page-section-container">
         <h2>Dados pessoais</h2>
-        <CardPequeno contato="Contato:" email="qwertyuiopp@assdfmail.com" />
 
         <CardPequeno
-          contato="Envie sua cartinha:"
-          endereco="Rua do Sol, n. xx"
+          imagem="http://assets.stickpng.com/images/584856b4e0bb315b0f7675ac.png"
+          titulo="E-mail:"
+          texto="qwertyuiopp@assdfmail.com"
+        />
+
+        <CardPequeno
+          imagem="https://freepikpsd.com/file/2019/10/icone-endere%C3%A7o-png-Transparent-Images.png"
+          titulo="Endereço:"
+          texto="Rua do Sol, n. xx"
         />
 
         <CardGrande
