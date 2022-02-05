@@ -1,25 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
-
-import { IconeComContador } from '../IconeComContador/IconeComContador'
-
-import iconeCoracaoBranco from '../../img/favorite-white.svg'
-import iconeCoracaoPreto from '../../img/favorite.svg'
-import iconeComentario from '../../img/comment_icon.svg'
-import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
+import React from "react";
+import styled from "styled-components";
+import { IconeComContador } from "../IconeComContador/IconeComContador";
+import iconeCoracaoBranco from "../../img/favorite-white.svg";
+import iconeCoracaoPreto from "../../img/favorite.svg";
+import iconeComentario from "../../img/comment_icon.svg";
+import { SecaoComentario } from "../SecaoComentario/SecaoComentario";
 
 const PostContainer = styled.div`
   border: 1px solid gray;
+  border: 0;
+  border-radius: 20px;
   width: 300px;
   margin-bottom: 10px;
-`
+  background-color: #fff;
+  box-shadow: 2px 2px 12px darkgray;
+`;
 
 const PostHeader = styled.div`
   height: 40px;
   display: flex;
   align-items: center;
   padding-left: 10px;
-`
+  padding: 10px;
+`;
 
 const PostFooter = styled.div`
   height: 40px;
@@ -27,83 +30,82 @@ const PostFooter = styled.div`
   align-items: center;
   padding: 0 10px;
   justify-content: space-between;
-`
-
+`;
 const UserPhoto = styled.img`
   height: 30px;
   width: 30px;
   margin-right: 10px;
   border-radius: 50%;
-`
+  border: 2px solid pink;
+`;
 
 const PostPhoto = styled.img`
   width: 100%;
-  height: 35vh;
-`
-
+`;
 class Post extends React.Component {
   state = {
-    curtido: false /* dúvida sobre quando suar o booleano */,
-    numeroCurtidas: 9,
-    comentando: false /* dúvida sobre quando suar o booleano */,
-    numeroComentarios: 10
-  }
+    curtido: false,
+    numeroCurtidas: 0,
+    comentando: false,
+    numeroComentarios: 0,
+  };
 
   onClickCurtida = () => {
-    console.log('Curtiu!')
+    console.log("Curtiu!");
     this.setState({
       curtido: !this.state.curtido,
-      numeroCurtidas: this.state.numeroCurtidas + 1
-    })
-  }
+      numeroCurtidas: this.state.numeroCurtidas + 1,
+    });
+    if (this.state.curtido) {
+      this.setState({
+        curtido: false,
+        numeroCurtidas: this.state.numeroCurtidas - 1,
+      });
+    } else {
+      this.setState({
+        curtido: true,
+        numeroCurtidas: this.state.numeroComentarios + 1,
+      });
+    }
+  };
 
   onClickComentario = () => {
     this.setState({
-      comentando:
-        !this.state.comentando /* por que está negando o this.state com "!"? */
-    })
-  }
-
+      comentando: !this.state.comentando,
+    });
+  };
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
-      numeroComentarios: this.state.numeroComentarios + 1
-    })
-  }
-
+      numeroComentarios: this.state.numeroComentarios + 1,
+    });
+  };
   render() {
-    let iconeCurtida
-
+    let iconeCurtida;
     if (this.state.curtido) {
-      iconeCurtida = iconeCoracaoPreto
+      iconeCurtida = iconeCoracaoPreto;
     } else {
-      iconeCurtida = iconeCoracaoBranco
+      iconeCurtida = iconeCoracaoBranco;
     }
-
-    let componenteComentario
-
+    let componenteComentario;
     if (this.state.comentando) {
       componenteComentario = (
         <SecaoComentario aoEnviar={this.aoEnviarComentario} />
-      )
+      );
     }
-
     return (
       <PostContainer>
         <PostHeader>
-          <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'} />
+          <UserPhoto src={this.props.fotoUsuario} alt={"Imagem do usuario"} />
           <p>{this.props.nomeUsuario}</p>
         </PostHeader>
-
-        <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'} />
-
+        <PostPhoto src={this.props.fotoPost} alt={"Imagem do post"} />
         <PostFooter>
           <IconeComContador
             icone={iconeCurtida}
             onClickIcone={this.onClickCurtida}
             valorContador={this.state.numeroCurtidas}
           />
-
           <IconeComContador
             icone={iconeComentario}
             onClickIcone={this.onClickComentario}
@@ -112,8 +114,7 @@ class Post extends React.Component {
         </PostFooter>
         {componenteComentario}
       </PostContainer>
-    )
+    );
   }
 }
-
-export default Post
+export default Post;
