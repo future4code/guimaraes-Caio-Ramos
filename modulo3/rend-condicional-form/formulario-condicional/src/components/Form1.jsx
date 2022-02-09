@@ -1,15 +1,17 @@
 import React from "react";
-/* import styled from "styled-components";
+import styled from "styled-components";
 
 const ColumnedDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
- */
+
 class Form1 extends React.Component {
   render() {
     return (
-      <div>
+      <ColumnedDiv>
         <h1>Etapa I - Dados Gerais</h1>
         <form>
           <label for="nome">
@@ -52,7 +54,7 @@ class Form1 extends React.Component {
             </select>
           </label>
         </form>
-      </div>
+      </ColumnedDiv>
     );
   }
 }

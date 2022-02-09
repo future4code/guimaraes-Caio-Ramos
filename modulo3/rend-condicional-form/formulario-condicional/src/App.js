@@ -3,14 +3,14 @@ import Form1 from "./components/Form1";
 import Form2 from "./components/Form2";
 import Form3 from "./components/Form3";
 import ThankYou from "./components/ThankYou";
-/* import styled from "styled-component";
+import styled from "styled-components";
 
 const StyledButton = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`; */
+`;
 class App extends React.Component {
   state = {
     etapa: 1,
@@ -19,19 +19,18 @@ class App extends React.Component {
     switch (this.state.etapa) {
       case 1:
         return <Form1 />;
-        break;
+
       case 2:
         return <Form2 />;
-        break;
+
       case 3:
         return <Form3 />;
-        break;
+
       case 4:
         return <ThankYou />;
-        break;
+
       default:
         console.log("AbubléAbubublé");
-        break;
     }
   };
 
@@ -50,7 +49,9 @@ class App extends React.Component {
           <br />
           {this.renderizaEtapa()}
           <br />
-          <button onClick={this.pularProximaEtapa}>Próxima etapa</button>
+          <StyledButton onClick={this.pularProximaEtapa}>
+            Próxima etapa
+          </StyledButton>
         </div>
       </div>
     );
