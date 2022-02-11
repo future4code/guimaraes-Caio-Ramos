@@ -28,17 +28,26 @@ class App extends React.Component {
 
     inputValue: "",
 
-    filtro: "",
+    filtro: "pendentes",
   };
 
-  componentDidUpdate() {
-    const allTasks = JSON.stringify([...this.state.tarefas]);
-    localStorage.setItem("Tarefas", allTasks);
+  componentDidMount() {
+    const persistTasks = localStorage.getItem("tarefas");
+    if (persistTasks) {
+      this.setState({ tarefas: JSON.parse(persistTasks) });
+    }
+
+    /* const tasksLS = JSON.parse(localStorage.getItem("Tarefas"));
+    this.setState({ tarefas: tasksLS }); */
   }
 
-  componentDidMount() {
-    const tasksLS = JSON.parse(localStorage.getItem("Tarefas"));
-    this.setState({ tarefas: tasksLS });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tarefas !== this.state.tarefas) {
+      localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas));
+    }
+
+    /*  const allTasks = JSON.stringify([...this.state.tarefas]);
+    localStorage.setItem("Tarefas", allTasks); */
   }
 
   onChangeInput = (event) => {
@@ -49,13 +58,12 @@ class App extends React.Component {
     const novaTarefa = {
       id: Date.now(),
       texto: this.state.inputValue,
-
       completa: false,
     };
 
     const stateCopy = [...this.state.tarefas, novaTarefa];
 
-    this.setState({ tarefas: this.state.stateCopy });
+    this.setState({ tarefas: stateCopy });
   };
 
   selectTarefa = (id) => {
