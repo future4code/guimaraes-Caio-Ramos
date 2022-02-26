@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+//import styled from "styled-components";
 import axios from "axios";
 
 const urlUsers =
@@ -27,7 +27,7 @@ export default class Cadastrar extends React.Component {
       .post(urlUsers, body, headers)
       .then((res) => {
         alert(`O(a) usuário(a)  foi criado(a) com sucesso.`);
-        console.log(res.data.result.list);
+        console.log(res.data);
         this.setState({ nameInput: "", emailInput: "" });
       })
       .catch((err) => {
@@ -55,7 +55,7 @@ export default class Cadastrar extends React.Component {
           value={this.state.emailInput}
           onChange={this.onChangeEmailInput}
         ></input>
-        <button onClick={() => this.createNewUser}>Enviar dados</button>
+        <button onClick={this.createNewUser}>Enviar dados</button>
       </div>
     );
   }

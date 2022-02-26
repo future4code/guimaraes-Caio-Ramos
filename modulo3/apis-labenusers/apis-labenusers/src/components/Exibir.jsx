@@ -11,6 +11,10 @@ export default class Exibir extends React.Component {
     this.showAllUsers();
   }
 
+  componentDidUpdate() {
+    this.showAllUsers();
+  }
+
   showAllUsers = () => {
     axios
       .get(
@@ -22,8 +26,8 @@ export default class Exibir extends React.Component {
         }
       )
       .then((res) => {
-        this.setState({ users: res.data.result.list });
-        console.log(res.data.result.list);
+        this.setState({ users: res.data });
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +45,7 @@ export default class Exibir extends React.Component {
       )
       .then((res) => {
         alert("Usuário deletado com sucesso!");
+
         console.log(res);
       })
       .catch((err) => {
@@ -52,7 +57,7 @@ export default class Exibir extends React.Component {
       return (
         <div>
           <p key={user.id}>{user.name}</p>
-          <button onCLick={() => this.deleteUser(user.id)}> X </button>
+          <button onClick={() => this.deleteUser(user.id)}> X </button>
         </div>
       );
     });

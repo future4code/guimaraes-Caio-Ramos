@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import axios from "axios";
+/* import styled from "styled-components";
+import axios from "axios"; */
 import Cadastrar from "../components/Cadastrar";
 import Exibir from "../components/Exibir";
 
