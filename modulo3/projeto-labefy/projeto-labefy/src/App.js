@@ -4,6 +4,16 @@ import axios from "axios";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+/* Parâmetros Gerais */
+const headers = {
+  headers: {
+    Authorization: "caio-ramos-guimaraes",
+  },
+};
+const urlTodasPlaylists =
+  "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
+
+/* Estilizações */
 const FullBody = styled.div`
   margin: 0;
   padding: 0;
@@ -58,6 +68,8 @@ const StyledButton = styled.button`
 const StyledList = styled.p`
   font-family: "Work Sans", sans-serif;
 `;
+
+/* Código */
 export default class App extends React.Component {
   state = {
     inputCreatePlaylist: "",
@@ -68,20 +80,21 @@ export default class App extends React.Component {
     artists: [],
     inputTrackUrl: "",
     urls: [],
-    selectedPlaylist: "",
-    detalhe: false,
+    pageDetail: false,
+    playListSelect: "",
   };
 
   componentDidMount() {
+    console.log("O component foi montado");
     this.showPlaylist();
+    this.getPlaylistTracks();
   }
 
-  /* componentDidUpdate() {
-    this.showPlaylist();
-  } */
-  renderizaDetalhe = (mostraPlaylist) => {
-    this.setState({ selectedPlaylist: mostraPlaylist, detalhe: true });
-  };
+  /* componentDidUpdate(prevProps, prevState) {
+    if (this.state.tracks !== prevState.tracks) {
+      console.log("O component foi atualizado");
+      this.getPlaylistTracks(); */
+
   showPlaylist = () => {
     axios
       .get(
@@ -122,15 +135,14 @@ export default class App extends React.Component {
       });
   };
 
-  getPlaylistTracks = (selectedPlaylist) => {
+  getPlaylistTracks = () => {
     axios
       .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${selectedPlaylist}/tracks`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.playListSelect.id}/tracks`,
         { headers: { Authorization: "caio-ramos-guimaraes" } }
       )
       .then((res) => {
-        this.setState({ tracks: res.data.result.list });
-        this.showPlaylist();
+        this.setState({ tracks: res.data.result.tracks });
       })
       .catch((err) => {
         alert("I AM ERROR");
@@ -141,7 +153,7 @@ export default class App extends React.Component {
   deletePlaylist = (playlistId) => {
     axios
       .delete(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId.id}`,
         { headers: { Authorization: "caio-ramos-guimaraes" } }
       )
       .then((res) => {
@@ -154,7 +166,14 @@ export default class App extends React.Component {
       });
   };
 
-  addTrack = (selectedPlaylist) => {
+  renderPageDetail = (selectPlaylist) => {
+    this.setState({ pageDetail: true, playListSelect: selectPlaylist });
+  };
+  renderPageBack = () => {
+    this.setState({ pageDetail: false });
+  };
+
+  addTrack = () => {
     const body = {
       name: this.state.inputCreateTrack,
       artist: this.state.inputCreateArtist,
@@ -163,14 +182,13 @@ export default class App extends React.Component {
 
     axios
       .post(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${selectedPlaylist}/tracks`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.playListSelect.id}/tracks`,
         body,
         { headers: { Authorization: "caio-ramos-guimaraes" } }
       )
       .then((res) => {
         alert("Música adicionada com sucesso");
         console.log(res.data.result.list);
-        this.showPlaylist();
       })
       .catch((err) => {
         alert("Ocorreu um erro ao adicionar a música");
@@ -195,8 +213,12 @@ export default class App extends React.Component {
   };
 
   render() {
-    if (this.state.detalhe) {
-      return <div>selectedPlaylist = {this.state.selectedPlaylist}</div>;
+    if (this.state.pageDetail) {
+      return (
+        <div>
+          <button onClick={this.renderPageBack}></button>
+        </div>
+      );
     }
 
     const renderedPlaylists = this.state.playlists.map((play) => {
@@ -214,7 +236,13 @@ export default class App extends React.Component {
     const renderedTracks = this.state.tracks.map((track) => {
       return (
         <div>
-          <p key={track}>{track.name}</p>
+          <p>{track.name}</p>
+          <p>{track.artist}</p>
+          <p>
+            <audio controls src={track.url} />
+          </p>
+          {/* conferir se está tudo certo com a tag audop */}
+          <button>Dá o Play!</button>
         </div>
       );
     });
@@ -255,7 +283,7 @@ export default class App extends React.Component {
             value={this.state.inputTrackUrl}
             onChange={this.onChangeUrl}
           />
-          <StyledButton onClick={this.addTrack}>Cadastrar Música</StyledButton>
+          <StyledButton onClick={this.addTrack}>Adicionar Música</StyledButton>
         </Styled2Aside>
         <StyledMain>
           {renderedPlaylists}
