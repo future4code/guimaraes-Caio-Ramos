@@ -50,7 +50,7 @@ export default class Header extends React.Component {
           <em>Labefy</em>
         </StyledH2>
 
-        <StyledH4>Música do seu jeito!</StyledH4>
+        {/* <StyledH4>Música do seu jeito!</StyledH4> */}
       </StyledHeader>
     );
   }
