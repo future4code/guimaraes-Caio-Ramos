@@ -1,22 +1,42 @@
 import React from "react";
+import Musics from "./Musics";
 import styled from "styled-components";
 import axios from "axios";
-
+export const headers = {
+  headers: {
+    Authorization: "caio-ramos-guimaraes",
+  },
+};
 export default class Playlists extends React.Component {
-  showPlaylist = () => {
+  state = {
+    inputCreatePlaylist: "",
+    playlists: [],
+    change: false,
+    selectedPlaylist: "",
+  };
+  renderChange = (showPlaylist) => {
+    this.setState({ change: true, selectedPlaylist: showPlaylist });
+  };
+
+  renderPlaylistPage = () => {
+    this.setState({ change: false });
+  };
+  componentDidMount() {
+    this.getAllPlaylists();
+  }
+
+  componentDidUpdate() {
+    this.getAllPlaylists();
+  }
+
+  getAllPlaylists = () => {
     axios
       .get(
         "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
-        {
-          headers: {
-            Authorization: "caio-ramos-guimaraes",
-          },
-        }
+        headers
       )
       .then((res) => {
         this.setState({ playlists: res.data.result.list });
-        console.log(res.data.result.list);
-        this.showPlaylist();
       })
       .catch((err) => {
         console.log(err.response);
@@ -31,11 +51,11 @@ export default class Playlists extends React.Component {
       .post(
         "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
         body,
-        { headers: { Authorization: "caio-ramos-guimaraes" } }
+        headers
       )
       .then((res) => {
         alert("Playlist criada com sucesso!");
-        this.showPlaylist();
+        this.setState({ inputCreatePlaylist: "" });
       })
       .catch((err) => {
         alert("I AM ERROR");
@@ -46,8 +66,8 @@ export default class Playlists extends React.Component {
   deletePlaylist = (playlistId) => {
     axios
       .delete(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId.id}`,
-        { headers: { Authorization: "caio-ramos-guimaraes" } }
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}`,
+        headers
       )
       .then((res) => {
         alert("Playlist deletada com sucesso!");
@@ -58,23 +78,53 @@ export default class Playlists extends React.Component {
         console.log(err.response);
       });
   };
-  onChangePlaylist = (e) => {
+  onChangeCreatePlaylist = (e) => {
     this.setState({ inputCreatePlaylist: e.target.value });
   };
 
   render() {
-    const renderedPlaylists = this.state.playlists.map((play) => {
+    if (this.state.change) {
+      return (
+        <Musics
+          selectedPlaylist={this.state.selectedPlaylist}
+          renderPlaylistPage={this.renderPlaylistPage}
+        />
+      );
+    }
+
+    const renderedPlaylists = this.state.playlists.map((play, i) => {
       return (
         <div>
-          <li key={play.id}>{play.name}</li>
-          <button onClick={() => this.deletePlaylist(play.id)}> X</button>
+          <p key={play.id}>
+            {play.name}{" "}
+            <button onClick={() => this.renderChange(play)}>+</button>
+          </p>
+          <button
+            onClick={() => {
+              if (window.confirm("Delete Playlist?")) {
+                this.deletePlaylist(play.id);
+              }
+            }}
+          >
+            {" "}
+            X
+          </button>
         </div>
       );
     });
 
     return (
       <div>
-        <h4>Playlists</h4>
+        <h3>Criar Playlists</h3>
+        <input
+          type="text"
+          placeholder="Digite o nome da sua Playlist..."
+          value={this.state.inputCreatePlaylist}
+          onChange={this.onChangeCreatePlaylist}
+        />
+        <button onClick={this.createPlaylist}>Criar</button>
+        {renderedPlaylists}
+        <button onClick={this.props.backToLogin}>Sair</button>
       </div>
     );
   }

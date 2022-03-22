@@ -9,28 +9,32 @@ export default class App extends React.Component {
     screen: "login",
   };
 
-  chooseScreen = () => {
+  selectScreen = () => {
     switch (this.state.screen) {
       case "login":
         return <Login goToPlaylists={this.goToPlaylists} />;
       case "playlists":
-        return <Playlists />;
+        return <Playlists backToLogin={this.backToLogin} />;
       default:
-        return <p>Meu deus, deu tudo errado!</p>;
+        return <p>Opa, algo deu errado</p>;
     }
   };
 
   goToPlaylists = () => {
-    this.setState({ screen: "playlist" });
+    this.setState({ screen: "playlists" });
+  };
+
+  backToLogin = () => {
+    this.setState({ screen: "login" });
   };
 
   render() {
-    console.log(this.chooseScreen);
+    console.log(this.selectScreen);
     return (
       <div>
         <Header />
 
-        {this.chooseScreen()}
+        {this.selectScreen()}
 
         <Footer />
       </div>
