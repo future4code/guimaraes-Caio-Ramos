@@ -4,16 +4,10 @@ import axios from "axios";
 export default function UserMatches(props) {
   const [matchList, setMatchList] = useState([]);
 
-  useEffect =
-    (() => {
-      getMatches();
-    },
-    []);
   const getMatches = () => {
     axios
       .get(
-        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos/matches
-`
+        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos-guimaraes/matches`
       )
       .then((res) => {
         console.log(res.data.matches);
@@ -23,21 +17,23 @@ export default function UserMatches(props) {
         console.log(err);
       });
   };
-  const renderedMatches = () => {
-    matchList.map((match) => {
-      return (
-        <div>
-          <div>
-            {" "}
-            <img src={match.photo} alt={match.name} /> {match.name}
-          </div>
-        </div>
-      );
-    });
-  };
+  useEffect(() => getMatches(), []);
+
   return (
     <div>
-      <div>{renderedMatches}</div>
+      {matchList.map((match) => {
+        return (
+          <div>
+            <div>
+              <img src={match.photo} alt={match.name} width={"100vw"} />
+              <p>{match.name}</p>
+              <p>{match.age}</p>
+            </div>
+          </div>
+        );
+      })}
+      <br />
+
       <button onClick={props.changeScreenUsers}>Sair</button>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserCard from "./components/UserCard";
 import UserMatches from "./components/UserMatches";
+
 export default function App() {
   const [screen, setScreen] = useState("userCard");
 
@@ -29,8 +30,7 @@ export default function App() {
   const clearMatches = () => {
     axios
       .put(
-        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos/clear
-  `
+        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos-guimaraes/clear`
       )
       .then((res) => {
         alert("Matches log cleared!");
@@ -45,7 +45,7 @@ export default function App() {
     <div>
       <h1>a s t r o m a t c h</h1>
       {mainScreen()}
-      <button onClick={changeScreenMatches}>Acessar Matches</button>
+      {/* <button onClick={changeScreenMatches}>Acessar Matches</button> */}
       <button onClick={clearMatches}>Limpar Matches</button>
     </div>
   );
