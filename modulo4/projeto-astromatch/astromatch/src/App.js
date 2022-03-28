@@ -3,6 +3,13 @@ import axios from "axios";
 import UserCard from "./components/UserCard";
 import UserMatches from "./components/UserMatches";
 
+import {
+  StyledBody,
+  StyledHeader,
+  StyledMain,
+  StyledFooter,
+} from "./assets/StyledApp";
+
 export default function App() {
   const [screen, setScreen] = useState("userCard");
 
@@ -42,11 +49,20 @@ export default function App() {
   };
 
   return (
-    <div>
-      <h1>a s t r o m a t c h</h1>
-      {mainScreen()}
-      {/* <button onClick={changeScreenMatches}>Acessar Matches</button> */}
-      <button onClick={clearMatches}>Limpar Matches</button>
-    </div>
+    <StyledBody>
+      <StyledHeader>
+        <h1>a s t r o m a t c h</h1>
+      </StyledHeader>
+      <StyledMain>
+        {" "}
+        {mainScreen()}
+        {/* <button onClick={changeScreenMatches}>Acessar Matches</button> */}
+        <button onClick={clearMatches}>Limpar Matches 🔄</button>
+      </StyledMain>
+
+      <StyledFooter>
+        <h4>AstroMatch ©. Todos os direitos reservados.</h4>
+      </StyledFooter>
+    </StyledBody>
   );
 }

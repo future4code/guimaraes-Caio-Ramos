@@ -50,7 +50,7 @@ export default function UserCard(props) {
 
     axios
       .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos/choose-person`,
+        `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio-ramos-guimaraes/choose-person`,
         body
       )
       .then((res) => {
@@ -71,11 +71,11 @@ export default function UserCard(props) {
         <p>{user.bio}</p>
       </div>
       <div>
-        <button onClick={likePerson}>Like</button>
-        <button onClick={dislikePerson}>Dislike</button>
+        <button onClick={likePerson}>🍆</button>
+        <button onClick={dislikePerson}>🧊</button>
       </div>
       <div>
-        <button onClick={props.changeScreenMatches}>Mostrar Matches</button>
+        <button onClick={props.changeScreenMatches}>Mostrar Matches </button>
       </div>
     </div>
   );

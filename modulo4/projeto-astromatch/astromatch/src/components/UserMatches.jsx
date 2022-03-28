@@ -34,7 +34,7 @@ export default function UserMatches(props) {
       })}
       <br />
 
-      <button onClick={props.changeScreenUsers}>Sair</button>
+      <button onClick={props.changeScreenUsers}>Sair ⏏️</button>
     </div>
   );
 }
