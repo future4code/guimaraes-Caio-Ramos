@@ -1,14 +1,13 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import baseUrl from "../constants/BaseUrl";
+import { baseUrl } from "../constants/BaseUrl";
 import { goBack } from "../constants/Navigation";
 import useForm from "../hooks/useForm";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { form, OnChangeForm, eraseForm } = useForm({
+  const { form, onChangeForm, eraseForm } = useForm({
     email: "",
     password: "",
   });
@@ -38,22 +37,26 @@ const Login = () => {
 
       <form onSubmit={toLogin}>
         <input
-          placeholder={"Insira seu e-mail"}
+          name={"email"}
           value={form.email}
-          onChange={OnChangeForm}
+          onChange={onChangeForm}
+          placeholder="Email"
           required
-          type={"email"}
+          type="email"
         />
         <input
-          placeholder={"Insira sua senha"}
+          name={"password"}
           value={form.password}
-          onChange={OnChangeForm}
+          onChange={onChangeForm}
+          placeholder="Senha"
           required
-          type={"password"}
+          type="password"
+          pattern={"^.{3,}"}
+          title={"A senha deve ter no mínimo 3 números"}
         />
+        <button>Login</button>
       </form>
 
-      {/* <button onClick={toLogin}>Login</button> */}
       <button
         onClick={() => {
           goBack(navigate);

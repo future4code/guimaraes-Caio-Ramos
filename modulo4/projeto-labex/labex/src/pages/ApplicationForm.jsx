@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "../hooks/useForm";
+import useForm from "../hooks/useForm";
 import useRequestData from "../hooks/useRequestData";
 import { baseUrl } from "../constants/BaseUrl";
 import { countries } from "../constants/Countries";

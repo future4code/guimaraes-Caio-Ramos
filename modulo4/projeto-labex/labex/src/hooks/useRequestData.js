@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { baseUrl } from "../constants/BaseUrl";
+
 const useRequestData = (url) => {
   const [data, setData] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
