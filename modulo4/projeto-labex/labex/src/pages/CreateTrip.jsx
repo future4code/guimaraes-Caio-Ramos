@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { baseUrl } from "../constants/BaseUrl";
 import { planets } from "../constants/Planets";
 import useForm from "../hooks/useForm";
-import useProtectedPage from "../hooks/useProtectedPage";
+/* import useProtectedPage from "../hooks/useProtectedPage"; */
 import { useNavigate } from "react-router-dom";
 import { goBack, goToHomePage, goToTripDetails } from "../constants/Navigation";
 
 const CreateTrip = () => {
-  useProtectedPage();
+  /* useProtectedPage(); */
   const navigate = useNavigate();
   const { form, onChangeForm, eraseForm } = useForm({
     name: "",
@@ -34,7 +34,7 @@ const CreateTrip = () => {
     axios
       .post(`${baseUrl}/trips`, body, headers)
       .then((res) => {
-        alert("viagem criada com sucesso!");
+        alert("Viagem criada com sucesso!");
       })
       .catch((err) => {
         alert("Algo deu errado!");
@@ -42,13 +42,13 @@ const CreateTrip = () => {
       });
     eraseForm();
   };
-  const selectPlanet = planets.map((planet) => {
+  /* const selectPlanet = planets.map((planet) => {
     return (
       <option value={planet} key={planet}>
         {planet}
       </option>
     );
-  });
+  }); */
   return (
     <div>
       <h2>Crie Sua Viagem</h2>
@@ -69,8 +69,14 @@ const CreateTrip = () => {
           placeholder={"Escolha um Planeta"}
           required
         >
-          <option value={""}></option>
-          {selectPlanet}
+          <option value={""}>Escolha um Planeta</option>
+          {planets.map((planets) => {
+            return (
+              <option value={planets} key={planets}>
+                {planets}
+              </option>
+            );
+          })}
         </select>
         <input
           name="date"
@@ -86,6 +92,8 @@ const CreateTrip = () => {
           onChange={onChangeForm}
           placeholder={"Descrição..."}
           required
+          pattern={"^.{10,}"}
+          title={"Sua texto deve ter no mínimo 10 caracteres"}
         />
         <input
           name="durationInDays"
@@ -94,6 +102,7 @@ const CreateTrip = () => {
           placeholder={"Duração em dias"}
           required
           type={"number"}
+          min={1}
         />
         <button>Criar</button>
       </form>

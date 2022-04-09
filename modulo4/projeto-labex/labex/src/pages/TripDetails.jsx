@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import useProtectedPage from "../hooks/useProtectedPage";
-import { useRequestData } from "../hooks/useRequestData";
 import { goBack, goToHomePage, goToCreateTrip } from "../constants/Navigation";
 import { baseUrl } from "../constants/BaseUrl";
 
 const TripDetails = () => {
-  useProtectedPage();
   const navigate = useNavigate();
   const params = useParams();
   const [tripDetail, setTripDetail] = useState([]);
@@ -30,7 +27,7 @@ const TripDetails = () => {
   };
   useEffect(() => {
     yourTrips();
-  }, []);
+  });
   const aproveCandidate = (candidate) => {
     const body = { aprove: true };
     axios

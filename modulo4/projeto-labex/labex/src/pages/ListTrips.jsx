@@ -16,25 +16,13 @@ const ListTrips = () => {
           <div>
             <p key={trip.id}>
               {" "}
-              <strong> Nome:</strong>
+              Nome:
               {trip.name}
             </p>
-            <p>
-              {" "}
-              <strong>Descrição: </strong> {trip.description}{" "}
-            </p>
-            <p>
-              {" "}
-              <strong> Planeta: </strong> {trip.planet}{" "}
-            </p>
-            <p>
-              {" "}
-              <strong> Duração em dias:</strong> {trip.durationInDays}
-            </p>
-            <p>
-              {" "}
-              <strong> Data:</strong> {trip.date}
-            </p>
+            <p> Descrição: {trip.description} </p>
+            <p> Planeta: {trip.planet} </p>
+            <p> Duração em dias: {trip.durationInDays}</p>
+            <p> Data: {trip.date}</p>
           </div>
         );
       })}

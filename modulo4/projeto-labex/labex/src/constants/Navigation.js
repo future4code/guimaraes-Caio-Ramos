@@ -21,6 +21,12 @@ export const goToListTrips = (navigate) => {
 
 export const goToLogin = (navigate) => {
   navigate("/login");
+  const token = localStorage.getItem("token");
+  if (token === null) {
+    navigate("/login");
+  } else {
+    navigate("/admin/trips/list");
+  }
 };
 
 export const goToTripDetails = (navigate) => {

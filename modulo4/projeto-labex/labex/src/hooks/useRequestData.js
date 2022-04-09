@@ -9,9 +9,9 @@ const useRequestData = (url) => {
     setIsLoading(true);
     axios
       .get(url)
-      .then((response) => {
+      .then((res) => {
         setIsLoading(false);
-        setData(response.data);
+        setData(res.data);
       })
       .catch((err) => {
         setIsLoading(false);

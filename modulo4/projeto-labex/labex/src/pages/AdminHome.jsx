@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import useProtectedPage from "../hooks/useProtectedPage";
+/* import useProtectedPage from "../hooks/useProtectedPage"; */
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../constants/BaseUrl";
 import useRequestData from "../hooks/useRequestData";
@@ -11,10 +11,8 @@ import {
 } from "../constants/Navigation";
 
 const AdminHome = () => {
-  useProtectedPage();
-  /* useEffect(() => {
-    const token = localStorage.getItem("token");
-  }); */
+  /* useProtectedPage(); */
+
   const [listTripsData, setListTripsData] = useRequestData(`${baseUrl}/trips`);
   const navigate = useNavigate();
 
@@ -42,13 +40,12 @@ const AdminHome = () => {
           setListTripsData();
         })
         .catch((err) => {
-          alert(err);
+          alert(err.response);
+          console.log(err.response);
         });
-    } else {
-      navigate("/admin/trips/list");
     }
   };
-  const renderedTrips = () => {
+  /*  const renderedTrips = () => {
     listTripsData.map((trip) => {
       return (
         <div onCLick={() => showTripDetails(trip.id)} key={trip.id}>
@@ -67,11 +64,33 @@ const AdminHome = () => {
         </div>
       );
     });
-  };
+  }; */
   return (
     <div>
       <h2>AdminHome</h2>
-      {renderedTrips}
+      {listTripsData?.trips.map((trip) => {
+        return (
+          <div onClick={() => showTripDetails(trip.id)} key={trip.id}>
+            <div>
+              {" "}
+              {trip.name}
+              <button
+                onClick={(e) => {
+                  deleteTrip(trip);
+                  navigate("/admin");
+                  e.stopPropagation();
+                }}
+              >
+                <img
+                  alt={"trash-icon"}
+                  src="https://img.icons8.com/office/344/delete--v1.png"
+                />
+              </button>
+            </div>
+            <br />
+          </div>
+        );
+      })}
       <button onClick={goToTripDetails(navigate)}>TripsDetails</button>
       <button onClick={goToCreateTrip(navigate)}>CreateTrip</button>
       <button

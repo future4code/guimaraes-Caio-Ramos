@@ -40,7 +40,7 @@ const ApplicationForm = () => {
       });
     eraseForm();
   };
-
+  /* 
   const selectTrip = listTripsData.map((trips) => {
     return (
       <option value={trips.id} key={trips.id}>
@@ -48,15 +48,15 @@ const ApplicationForm = () => {
         {trips.planet}
       </option>
     );
-  });
+  }); */
 
-  const selectCountry = countries.map((country) => {
+  /* const selectCountry = countries.map((country) => {
     return (
       <option value={country} key={country}>
         {country}
       </option>
     );
-  });
+  }); */
 
   return (
     <div>
@@ -70,7 +70,14 @@ const ApplicationForm = () => {
             onChange={onChangeForm}
           >
             <option value={""}>Selecione uma viagem:</option>
-            {selectTrip}
+
+            {listTripsData?.trips.map((trip) => {
+              return (
+                <option value={trip.id} key={trip.id}>
+                  {trip.name} {trip.planet}
+                </option>
+              );
+            })}
           </select>
           <input
             name="name"
@@ -94,6 +101,8 @@ const ApplicationForm = () => {
             onChange={onChangeForm}
             placeholder={"Por que você deve ser escolhido?"}
             required
+            pattern={"^.{10,}"}
+            title={"Sua texto de candidatura deve ter ao menos 10 caracteres"}
           />
           <input
             name="profession"
@@ -101,6 +110,8 @@ const ApplicationForm = () => {
             onChange={onChangeForm}
             placeholder={"Profissão"}
             required
+            pattern={"^.{4,}"}
+            title={"Sua profissão deve ter no mínimo 4 caracteres"}
           />
           <select
             value={form.country}
@@ -109,8 +120,16 @@ const ApplicationForm = () => {
             onChange={onChangeForm}
           >
             <option value={""}>Escolha seu país:</option>
-            {selectCountry}
+            <option value={""}>País de origem:</option>
+            {countries.map((country) => {
+              return (
+                <option value={country} key={country}>
+                  {country}
+                </option>
+              );
+            })}
           </select>
+          <br />
           <button>Enviar</button>
         </form>
       </div>

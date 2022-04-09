@@ -12,7 +12,7 @@ const Home = () => {
           goToListTrips(navigate);
         }}
       >
-        ListTrips
+        Lista de Viagens
       </button>
       <button
         onClick={() => {
