@@ -1,6 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { goToListTrips, goToLogin } from "../constants/Navigation";
+import {
+  goToListTrips,
+  goToLogin,
+  goToApplicationForm,
+} from "../constants/Navigation";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,6 +17,13 @@ const Home = () => {
         }}
       >
         Lista de Viagens
+      </button>
+      <button
+        onClick={() => {
+          goToApplicationForm(navigate);
+        }}
+      >
+        Formulário de inscrição
       </button>
       <button
         onClick={() => {
