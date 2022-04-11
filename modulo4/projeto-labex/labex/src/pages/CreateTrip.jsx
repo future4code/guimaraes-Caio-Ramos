@@ -3,12 +3,11 @@ import axios from "axios";
 import { baseUrl } from "../constants/BaseUrl";
 import { planets } from "../constants/Planets";
 import useForm from "../hooks/useForm";
-/* import useProtectedPage from "../hooks/useProtectedPage"; */
+
 import { useNavigate } from "react-router-dom";
 import { goBack, goToHomePage, goToTripDetails } from "../constants/Navigation";
 
 const CreateTrip = () => {
-  /* useProtectedPage(); */
   const navigate = useNavigate();
   const { form, onChangeForm, eraseForm } = useForm({
     name: "",
@@ -42,13 +41,7 @@ const CreateTrip = () => {
       });
     eraseForm();
   };
-  /* const selectPlanet = planets.map((planet) => {
-    return (
-      <option value={planet} key={planet}>
-        {planet}
-      </option>
-    );
-  }); */
+
   return (
     <div>
       <h2>Crie Sua Viagem</h2>

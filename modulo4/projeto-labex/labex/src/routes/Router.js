@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 import AdminHome from "../pages/AdminHome";
 import ApplicationForm from "../pages/ApplicationForm";
 import CreateTrip from "../pages/CreateTrip";

@@ -4,14 +4,16 @@ import useForm from "../hooks/useForm";
 import useRequestData from "../hooks/useRequestData";
 import { baseUrl } from "../constants/BaseUrl";
 import { countries } from "../constants/Countries";
-import { goBack, goToHomePage } from "../constants/Navigation";
+//import { goBack, goToHomePage } from "../constants/Navigation";
 import axios from "axios";
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
-  const [listTripsData] = useRequestData(`${baseUrl}/trips`);
-  const [form, onChangeForm, eraseForm] = useForm({
+  const { data } = useRequestData(`${baseUrl}/trips`);
+
+  const { form, onChange, cleanFields } = useForm({
     tripId: "",
     name: "",
     age: "",
@@ -20,8 +22,8 @@ const ApplicationForm = () => {
     country: "",
   });
 
-  const applyTrip = (e) => {
-    e.preventDefault();
+  const applyToTrip = (event) => {
+    event.preventDefault();
 
     const body = {
       name: form.name,
@@ -33,45 +35,26 @@ const ApplicationForm = () => {
     axios
       .post(`${baseUrl}/trips/${form.tripId}/apply`, body)
       .then((res) => {
-        alert("Inscrição realizada com sucesso!");
+        alert("Aplicação bem sucedida!");
       })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      });
-    eraseForm();
-  };
-  /* 
-  const selectTrip = listTripsData.map((trips) => {
-    return (
-      <option value={trips.id} key={trips.id}>
-        {trips.name}
-        {trips.planet}
-      </option>
-    );
-  }); */
+      .catch((err) => err.response);
 
-  /* const selectCountry = countries.map((country) => {
-    return (
-      <option value={country} key={country}>
-        {country}
-      </option>
-    );
-  }); */
+    cleanFields();
+  };
 
   return (
     <div>
-      <h2>Application Form</h2>
+      <h1>Inscreva-se para uma Viagem</h1>
       <div>
-        <form onSubmit={applyTrip}>
+        <form onSubmit={applyToTrip}>
           <select
             value={form.tripId}
             required
             name={"tripId"}
-            onChange={onChangeForm}
+            onChange={onChange}
           >
-            <option value={""}>Selecione uma viagem:</option>
-
-            {listTripsData?.trips.map((trip) => {
+            <option value={""}>Selecione a viagem:</option>
+            {data?.trips.map((trip) => {
               return (
                 <option value={trip.id} key={trip.id}>
                   {trip.name} {trip.planet}
@@ -82,24 +65,24 @@ const ApplicationForm = () => {
           <input
             name="name"
             value={form.name}
-            onChange={onChangeForm}
-            placeholder={"Nome..."}
+            onChange={onChange}
+            placeholder={"Nome"}
             required
           />
           <input
             name="age"
             value={form.age}
-            onChange={onChangeForm}
-            placeholder={"Idade..."}
+            onChange={onChange}
+            placeholder={"Idade"}
             required
             type={"number"}
-            min={18}
+            /* min={18} */
           />
           <input
             name="applicationText"
             value={form.applicationText}
-            onChange={onChangeForm}
-            placeholder={"Por que você deve ser escolhido?"}
+            onChange={onChange}
+            placeholder={"Texto de Candidatura"}
             required
             pattern={"^.{10,}"}
             title={"Sua texto de candidatura deve ter ao menos 10 caracteres"}
@@ -107,7 +90,7 @@ const ApplicationForm = () => {
           <input
             name="profession"
             value={form.profession}
-            onChange={onChangeForm}
+            onChange={onChange}
             placeholder={"Profissão"}
             required
             pattern={"^.{4,}"}
@@ -117,9 +100,8 @@ const ApplicationForm = () => {
             value={form.country}
             required
             name={"country"}
-            onChange={onChangeForm}
+            onChange={onChange}
           >
-            <option value={""}>Escolha seu país:</option>
             <option value={""}>País de origem:</option>
             {countries.map((country) => {
               return (
@@ -133,20 +115,8 @@ const ApplicationForm = () => {
           <button>Enviar</button>
         </form>
       </div>
-      <button
-        onClick={() => {
-          goToHomePage(navigate);
-        }}
-      >
-        Ir para Home
-      </button>
-      <button
-        onClick={() => {
-          goBack(navigate);
-        }}
-      >
-        Voltar
-      </button>
+
+      <button onClick={goBack}>Voltar</button>
     </div>
   );
 };

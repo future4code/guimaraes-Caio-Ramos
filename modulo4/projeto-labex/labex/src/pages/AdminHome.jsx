@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-/* import useProtectedPage from "../hooks/useProtectedPage"; */
+
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../constants/BaseUrl";
 import useRequestData from "../hooks/useRequestData";
@@ -11,8 +11,6 @@ import {
 } from "../constants/Navigation";
 
 const AdminHome = () => {
-  /* useProtectedPage(); */
-
   const [listTripsData, setListTripsData] = useRequestData(`${baseUrl}/trips`);
   const navigate = useNavigate();
 
@@ -45,26 +43,7 @@ const AdminHome = () => {
         });
     }
   };
-  /*  const renderedTrips = () => {
-    listTripsData.map((trip) => {
-      return (
-        <div onCLick={() => showTripDetails(trip.id)} key={trip.id}>
-          <div>{trip.name}</div>
-          <div
-            onClicK={(e) => {
-              e.stopPropagation();
-              deleteTrip(trip);
-            }}
-          >
-            <div>
-              {" "}
-              <img src="/img/download.png" width=" 8% " height=" 8% " />
-            </div>
-          </div>
-        </div>
-      );
-    });
-  }; */
+
   return (
     <div>
       <h2>AdminHome</h2>

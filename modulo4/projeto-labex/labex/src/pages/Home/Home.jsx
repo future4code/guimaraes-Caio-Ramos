@@ -4,35 +4,35 @@ import {
   goToListTrips,
   goToLogin,
   goToApplicationForm,
-} from "../constants/Navigation";
-
+} from "../../constants/Navigation";
+import { StyledBody, StyledButton } from "../Home/styledHome";
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <button
+    <StyledBody>
+      <StyledButton
         onClick={() => {
           goToListTrips(navigate);
         }}
       >
         Lista de Viagens
-      </button>
-      <button
+      </StyledButton>
+      <StyledButton
         onClick={() => {
           goToApplicationForm(navigate);
         }}
       >
         Formulário de inscrição
-      </button>
-      <button
+      </StyledButton>
+      <StyledButton
         onClick={() => {
           goToLogin(navigate);
         }}
       >
         Logar
-      </button>
-    </div>
+      </StyledButton>
+    </StyledBody>
   );
 };
 export default Home;

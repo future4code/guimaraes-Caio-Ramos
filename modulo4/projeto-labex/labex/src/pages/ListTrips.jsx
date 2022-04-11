@@ -5,13 +5,13 @@ import useRequestData from "../hooks/useRequestData";
 import { goBack, goToApplicationForm } from "../constants/Navigation";
 
 const ListTrips = () => {
-  const [listTripsData] = useRequestData(`${baseUrl}/trips`);
+  const { data } = useRequestData(`${baseUrl}/trips`);
   const navigate = useNavigate();
 
   return (
     <div>
       <h2>Lista de Viagens</h2>
-      {listTripsData?.trips.map((trip) => {
+      {data?.trips.map((trip) => {
         return (
           <div>
             <p key={trip.id}>
