@@ -8,6 +8,11 @@
 const nome = process.argv[2];
 const idade = Number(process.argv[3]);
 const futuro = idade + 7;
+//Desafio1:
+if (nome == process.argv[2] && idade == process.argv[3]) {
+} else {
+  console.log("Esperava 2 parâmetros, mas algum ficou faltando");
+}
 let red = "\u001b[31m";
 let blue = "\u001b[34m";
 let reset = "\u001b[0m";
