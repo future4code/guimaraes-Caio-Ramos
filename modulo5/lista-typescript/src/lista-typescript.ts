@@ -58,4 +58,25 @@ function exercicio2(param: any): void {
 exercicio2("livrinho");
 //=========================================================================================
 //Ex3:
-function exercicio3() {}
+/* type name = string | undefined;
+type launchYear = string | number | undefined;
+type genre = string | undefined;
+type score = string | number | undefined; */
+
+enum GENERO {
+  ACAO = "ação",
+  DRAMA = "drama",
+  COMEDIA = "comédia",
+  ROMANCE = "romance",
+  TERROR = "terror",
+}
+type filminho = {
+  name: string | undefined;
+  launchYear: string | number | undefined;
+  genre: GENERO;
+  //score?: string | number | undefined;
+};
+
+function exercicio3(filminho, score?: string | number | undefined) {}
+//=========================================================================================
+//Ex4:
