@@ -49,3 +49,13 @@ function apresentacao(name: string, birthday: string): string {
   return `Olá, me chamo ${name}, e nasci no dia ${day} de ${month} de ${year}.`;
 }
 console.log(apresentacao("Caio", "19/07/1989"));
+//=========================================================================================
+//Ex2:
+function exercicio2(param: any): void {
+  let tipo = typeof param;
+  console.log(`O tipo do parâmetro é "${tipo}"`);
+}
+exercicio2("livrinho");
+//=========================================================================================
+//Ex3:
+function exercicio3() {}
