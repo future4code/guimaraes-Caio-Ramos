@@ -1,4 +1,7 @@
 //Projeto: Lista Typescript
+
+import { EnumType } from "typescript";
+
 //Ex1:
 function apresentacao(name: string, birthday: string): string {
   let aniversario = birthday.split("/");
@@ -62,7 +65,6 @@ exercicio2("livrinho");
 type launchYear = string | number | undefined;
 type genre = string | undefined;
 type score = string | number | undefined; */
-
 enum GENERO {
   ACAO = "ação",
   DRAMA = "drama",
@@ -70,13 +72,26 @@ enum GENERO {
   ROMANCE = "romance",
   TERROR = "terror",
 }
-type filminho = {
-  name: string | undefined;
-  launchYear: string | number | undefined;
-  genre: GENERO;
-  //score?: string | number | undefined;
-};
-
-function exercicio3(filminho, score?: string | number | undefined) {}
+function exercicio3(
+  nome: string,
+  ano: number,
+  genero: EnumType,
+  nota?: string | number | undefined
+): any {
+  type filminho = {
+    name: string | undefined;
+    launchYear: string | number | undefined;
+    genre: EnumType;
+    score?: string | number | undefined;
+  };
+  let filme: filminho = {
+    name: nome,
+    launchYear: ano,
+    genre: genero,
+    score: nota,
+  };
+  return filme;
+}
+console.log(exercicio3("Batman", 2021, GENERO.ACAO, 80));
 //=========================================================================================
 //Ex4:
