@@ -61,10 +61,7 @@ function exercicio2(param: any): void {
 exercicio2("livrinho");
 //=========================================================================================
 //Ex3:
-/* type name = string | undefined;
-type launchYear = string | number | undefined;
-type genre = string | undefined;
-type score = string | number | undefined; */
+
 enum GENERO {
   ACAO = "ação",
   DRAMA = "drama",
@@ -72,18 +69,19 @@ enum GENERO {
   ROMANCE = "romance",
   TERROR = "terror",
 }
+type filminho = {
+  name: string | undefined;
+  launchYear: string | number | undefined;
+  genre: string;
+  score?: string | number | undefined;
+};
+
 function exercicio3(
   nome: string,
   ano: number,
-  genero: EnumType,
+  genero: string,
   nota?: string | number | undefined
-): any {
-  type filminho = {
-    name: string | undefined;
-    launchYear: string | number | undefined;
-    genre: EnumType;
-    score?: string | number | undefined;
-  };
+): filminho {
   let filme: filminho = {
     name: nome,
     launchYear: ano,
@@ -92,6 +90,6 @@ function exercicio3(
   };
   return filme;
 }
-console.log(exercicio3("Batman", 2021, GENERO.ACAO, 80));
+console.log(exercicio3("batman", 2021, GENERO.ACAO, 90));
 //=========================================================================================
 //Ex4:
