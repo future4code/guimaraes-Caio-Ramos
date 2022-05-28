@@ -93,3 +93,41 @@ function exercicio3(
 console.log(exercicio3("batman", 2021, GENERO.ACAO, 90));
 //=========================================================================================
 //Ex4:
+enum SETORES {
+  MARKETING = "Marketing",
+  FINANCEIRO = "Financeiro",
+  VENDAS = "Vendas",
+}
+
+type Colaborador = {
+  name: string;
+  salary: number;
+  session: string;
+  localWork: boolean;
+};
+
+const empregados: Array<Colaborador> = [
+  { name: "Marcos", salary: 2500, session: SETORES.MARKETING, localWork: true },
+  { name: "Maria", salary: 1500, session: SETORES.VENDAS, localWork: false },
+  {
+    name: "Salete",
+    salary: 2200,
+    session: SETORES.FINANCEIRO,
+    localWork: true,
+  },
+  { name: "João", salary: 2800, session: SETORES.MARKETING, localWork: false },
+  { name: "Josué", salary: 5500, session: SETORES.FINANCEIRO, localWork: true },
+  { name: "Natalia", salary: 4700, session: SETORES.VENDAS, localWork: true },
+  { name: "Paola", salary: 3500, session: SETORES.MARKETING, localWork: true },
+];
+function exercicio4(empregados: Array<Colaborador>) {
+  let presencial = empregados.filter((empregado) => {
+    return (
+      empregado.session === SETORES.MARKETING && empregado.localWork === true
+    );
+  });
+  return presencial;
+}
+console.log(exercicio4(empregados));
+//=========================================================================================
+//Ex5:
