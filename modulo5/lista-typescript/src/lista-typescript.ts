@@ -131,3 +131,60 @@ function exercicio4(empregados: Array<Colaborador>) {
 console.log(exercicio4(empregados));
 //=========================================================================================
 //Ex5:
+type servidor = {
+  name: string;
+  email: string;
+  role: string;
+};
+
+const person: servidor[] = [
+  { name: "Rogério", email: "roger@email.com", role: "user" },
+  { name: "Ademir", email: "ademir@email.com", role: "admin" },
+  { name: "Aline", email: "aline@email.com", role: "user" },
+  { name: "Jéssica", email: "jessica@email.com", role: "user" },
+  { name: "Adilson", email: "adilson@email.com", role: "user" },
+  { name: "Carina", email: "carina@email.com", role: "admin" },
+];
+
+function exercicio5(person: servidor[]) {
+  let admins = person.filter((guy) => {
+    return guy.role == "admin";
+  });
+  return admins;
+}
+console.log(exercicio5(person));
+//=========================================================================================
+//Ex6:
+type Clients = {
+  name: string;
+  totalCash: number;
+  totalDebt: number[];
+};
+const correntistas: Clients[] = [
+  {
+    name: "João",
+    totalCash: 1000,
+    totalDebt: [100, 200, 300],
+  },
+  { name: "Paula", totalCash: 7500, totalDebt: [200, 1040] },
+  { name: "Pedro", totalCash: 10000, totalDebt: [5140, 6100, 100, 2000] },
+  { name: "Luciano", totalCash: 100, totalDebt: [100, 200, 1700] },
+  { name: "Artur", totalCash: 1800, totalDebt: [200, 300] },
+  { name: "Soter", totalCash: 1200, totalDebt: [] },
+];
+
+function exercicio6(correntistas: Clients[]) {
+  correntistas.forEach((corr) => {
+    const reducedDebts = corr.totalDebt.reduce(
+      (acumulador, valor) => (acumulador += valor),
+      0
+    );
+    corr.totalCash -= reducedDebts;
+    corr.totalDebt = [];
+  });
+  const redFlagCostumers = correntistas.filter((corr) => {
+    return corr.totalCash < 0;
+  });
+  return redFlagCostumers;
+}
+console.log(exercicio6(correntistas));
