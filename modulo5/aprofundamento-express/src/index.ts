@@ -47,6 +47,25 @@ app.get("/todos/pending", (req: Request, res: Response) => {
 });
 
 //Ex5:
+app.post("/todos/create", (req: Request, res: Response) => {
+  try {
+    const userId = req.body.userId;
+    const id = req.body.id;
+    const title = req.body.title;
+    const completed = req.body.completed;
+    toDoAll.push({
+      userId: Math.random(),
+      id: Math.random(),
+      title: "lorem ipsum",
+      completed: false,
+    });
+
+    res.status(201).send(toDoAll);
+  } catch (error: any) {
+    res.end(error.message);
+  }
+});
+
 
 app.listen(3003, () => {
   console.log("Alo Adriano. Tá me Ouvindo.");
