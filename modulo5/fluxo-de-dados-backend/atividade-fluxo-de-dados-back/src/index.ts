@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//let myuuid = uuid4();
+const errors = {};
 //Ex1:
 
 app.get("/test", (req: Request, res: Response) => {
