@@ -24,8 +24,8 @@ app.get("/posts/:userId", (req: Request, res: Response) => {
     if (userId === post.userId) {
       return post;
     }
-    res.send(getPostsById);
   });
+  res.send(getPostsById);
 });
 
 //Ex10:
