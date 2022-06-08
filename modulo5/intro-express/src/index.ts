@@ -17,10 +17,36 @@ app.get("/", (req, res) => {
 //Ex2 em data.ts
 //Ex3 em data.ts
 
-//Ex4:
-app.get("/users", (req: Request, res: Response) => {
-  const getUsers = usersArray.map((u) => u);
-  res.send(getUsers);
+//Ex8:
+app.get("/posts/:userId", (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const getPostsById = postsArray.filter((post) => {
+    if (userId === post.userId) {
+      return post;
+    }
+    res.send(getPostsById);
+  });
+});
+
+//Ex10:
+app.delete("/users/delete/:id", (req: Request, res: Response) => {
+  const id = req.params.id;
+  usersArray.forEach((u, i) => {
+    if (u.id === id) {
+      usersArray.splice(i, 1);
+    }
+  });
+  res.status(200).send(usersArray);
+});
+//Ex9:
+app.delete("/posts/delete/:id", (req: Request, res: Response) => {
+  const id = req.params.id;
+  postsArray.forEach((p, i) => {
+    if (p.id === id) {
+      postsArray.splice(i, 1);
+    }
+  });
+  res.status(200).send(postsArray);
 });
 
 //Ex7:
@@ -28,19 +54,11 @@ app.get("/posts", (req: Request, res: Response) => {
   const getPosts = postsArray.map((p) => p);
   res.status(200).send(getPosts);
 });
-
-//Ex8:
-app.get("/posts/:userId", (req: Request, res: Response) => {
-  const getPostsById = postsArray.filter((post) => {
-    const userId = req.body.userId;
-    if (userId === post.userId) {
-      return post;
-    }
-  });
-
-  res.status(200).send(getPostsById);
+//Ex4:
+app.get("/users", (req: Request, res: Response) => {
+  const getUsers = usersArray.map((u) => u);
+  res.send(getUsers);
 });
-
 app.listen(3003, () => {
   console.log("alo adriano ta me ouvindo");
 });
