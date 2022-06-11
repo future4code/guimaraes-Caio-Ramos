@@ -99,6 +99,70 @@ app.put("/users", (req: Request, res: Response) => {
   }
 });
 
+//Ex5:
+
+app.put("/usersbyname/:id", (req: Request, res: Response) => {
+  let errorCode = 500;
+  try {
+    const id = Number(req.params.id);
+
+    if (isNaN(id)) {
+      throw new Error("Id inválido");
+    }
+    const editedName = users.forEach((u) => {
+      if (u.id === id) {
+        u.name += "-ALTERADO";
+        return res.status(200).end();
+      }
+    });
+    console.log(editedName);
+    res.status(204).send("Usuário não encontrado");
+  } catch (error: any) {
+    res.status(errorCode).send(error.message);
+  }
+});
+//Ex 6:
+app.patch("/usersbyname/:id", (req: Request, res: Response) => {
+  let errorCode = 500;
+  try {
+    const id = Number(req.params.id);
+
+    if (isNaN(id)) {
+      throw new Error("Id inválido");
+    }
+    const editedName = users.forEach((u) => {
+      if (u.id === id) {
+        u.name += "-REALTERADO";
+        return res.status(200).end();
+      }
+    });
+    console.log(editedName);
+    res.status(204).send("Usuário não encontrado");
+  } catch (error: any) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
+//Ex7:
+app.delete("/users/:id", (req: Request, res: Response) => {
+  let errorCode = 500;
+  try {
+    const id = Number(req.body.id);
+
+    if (isNaN(id)) {
+      throw new Error("Id inválido");
+    }
+    users.forEach((u, i) => {
+      if (u.id === id) {
+        users.splice(i, 1);
+      }
+    });
+    res.status(200).send(users);
+  } catch (error: any) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
 //Acorda, Servidor!
 app.listen(3003, () => {
   console.log("Alo Adriano tá meu ouvindo?");
