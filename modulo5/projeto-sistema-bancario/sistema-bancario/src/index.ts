@@ -1,13 +1,14 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
-import { bankUsers } from "./data";
+
+import { bankUsers, Account } from "./data";
 //Middlewares
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/accounts", (req: Request, res: Response) => {
+app.get("/users/accounts", (req: Request, res: Response) => {
   try {
     const users = bankUsers;
     /* const getByCPF = users.map((u) => {
@@ -35,7 +36,7 @@ app.get("/balance/:name", (req: Request, res: Response) => {
   }
 });
 
-app.get("/balance/:cpf", (req: Request, res: Response) => {
+/* app.get("/balance/:cpf", (req: Request, res: Response) => {
   try {
     const users = bankUsers;
     // const name = req.params.name;
@@ -49,7 +50,7 @@ app.get("/balance/:cpf", (req: Request, res: Response) => {
   } catch (error) {
     res.status(400).end("Cliente não encontrado");
   }
-});
+}); */
 
 app.listen(3003, () => {
   console.log("Alo Adriano, ta me ouvindo");
