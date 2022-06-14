@@ -1,7 +1,7 @@
 import { v4 as generateId } from "uuid";
 
 export type Account = {
-  id: string;
+  id: number;
   name: string;
   cpf: number | string;
   dateOfBirth: string;
@@ -9,11 +9,9 @@ export type Account = {
   bankStatement: [{ value: number; date: string; description: string }];
 };
 
-
-
 export const bankUsers: Account[] = [
   {
-    id: "1",
+    id: 1,
     name: "Caio",
     cpf: generateId(),
     dateOfBirth: "19/07/1989",
@@ -21,7 +19,7 @@ export const bankUsers: Account[] = [
     bankStatement: [{ value: 0, date: "", description: "" }],
   },
   {
-    id: "2",
+    id: 2,
     name: "Lethícia",
     cpf: generateId(),
     dateOfBirth: "09/08/1990",
@@ -29,7 +27,7 @@ export const bankUsers: Account[] = [
     bankStatement: [{ value: 0, date: "", description: "" }],
   },
   {
-    id: "3",
+    id: 3,
     name: "Camila",
     cpf: generateId(),
     dateOfBirth: "19/07/1989",
@@ -37,7 +35,7 @@ export const bankUsers: Account[] = [
     bankStatement: [{ value: 0, date: "", description: "" }],
   },
   {
-    id: "4",
+    id: 4,
     name: "Laíne",
     cpf: generateId(),
     dateOfBirth: "19/07/1989",
@@ -45,7 +43,7 @@ export const bankUsers: Account[] = [
     bankStatement: [{ value: 0, date: "", description: "" }],
   },
   {
-    id: "5",
+    id: 5,
     name: "Tiago",
     cpf: generateId(),
     dateOfBirth: "19/07/1989",
@@ -53,7 +51,7 @@ export const bankUsers: Account[] = [
     bankStatement: [{ value: 0, date: "", description: "" }],
   },
   {
-    id: "6",
+    id: 6,
     name: "Lucas",
     cpf: generateId(),
     dateOfBirth: "19/07/1989",
