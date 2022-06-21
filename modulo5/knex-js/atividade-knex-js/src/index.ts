@@ -80,6 +80,37 @@ app.delete("/actors/delete/:id", async (req: Request, res: Response) => {
   }
 });
 
+//Ex 2-C:
+
+app.get("/actors/gender", async (req: Request, res: Response) => {
+  try {
+    const gender = req.query.gender;
+    const result = await connection("actor")
+      .avg(`salary as average`)
+      .where({ gender });
+    return result[0].average;
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).send(`An unexpected error has occurred`);
+  }
+});
+
+//EX 3-A:
+app.get("/actors/:id", async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const actor = await getActorById(id)
+    
+    res.status(200).send(actor)
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(400).send(error.message);
+  }
+});
+
+//Ex 3-B:
+
+
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
