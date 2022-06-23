@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
 import { connection } from "./connection";
+import { v4 } from "uuid";
 
 const app = express();
 app.use(express.json());
@@ -99,7 +100,7 @@ app.get("/actor", async (req: Request, res: Response) => {
   }
 });
 
-const createActor = async (
+/* const createActor = async (
   id: string,
   name: string,
   salary: number,
@@ -112,22 +113,56 @@ const createActor = async (
   `);
 
   return result;
-};
+}; */
 
 app.post("/actor", async (req: Request, res: Response) => {
+  const { id, name, salary, birth_date, gender } = req.body;
   try {
-    await createActor(
-      req.body.id,
-      req.body.name,
-      Number(req.body.salary),
-      new Date(req.body.birth_date),
-      req.body.gender
-    );
+    await connection.raw(`
+      INSERT INTO actor (id, name, salary, birth_date, gender)
+      VALUES(
+        008,
+         \" ${name}\",
+          ${Number(salary)},
+          \"${birth_date}\",
+         \" ${gender}\"
+      )
+      
+    
+    `);
 
     res.status(200).send();
   } catch (error: any) {
     console.log(error.message);
     res.status(500).send(`Erro inesperado.`);
+  }
+});
+
+//EX 4-A:
+app.put("/actor", async (req: Request, res: Response) => {
+  try {
+    await connection("Actor")
+      .update({
+        salary: req.body.salary,
+      })
+      .where({
+        id: req.body.id,
+      });
+    res.send("Salario atualizado!");
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).send("Erro inesperado.");
+  }
+});
+
+//Ex 4-B:
+app.delete("/actor/:id", async (req: Request, res: Response) => {
+  try {
+    await connection("Actor").delete().where({ id: req.params.id });
+    res.status(200).send("Ator/Atriz deletado(a).");
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).send("Erro inesperado.");
   }
 });
 
