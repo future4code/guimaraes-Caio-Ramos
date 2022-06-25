@@ -16,10 +16,8 @@ const id = generateId();
 
 //*status : ENUM - to do, ongoing, done
 
-//CRIAR USER:
+//1) CRIAR USER:
 app.post("/users", async (req: Request, res: Response) => {
-  
-  
   try {
     await connection.raw(`
 
@@ -39,7 +37,7 @@ VALUES(
   }
 });
 
-//PEGAR USER POR ID:
+//2) PEGAR USER POR ID:
 
 app.get("/users/:id", async (req: Request, res: Response) => {
   const id: string = req.params.id;
@@ -55,7 +53,7 @@ SELECT * FROM UserToDoList WHERE id = '${id}'
     res.status(500).send(error.message);
   }
 });
-//EDITAR USER:
+//3) EDITAR USER:
 app.put("/users/:id", async (req: Request, res: Response) => {
   const id: string = req.params.id;
   const { name, nickname, email } = req.body;
@@ -74,7 +72,8 @@ WHERE id =  '${id}'
   }
 });
 
-//CREATE TASK:
+//4 & 9)CREATE TASK:
+//Todas as tasks ao serem criadas já são atribuídas a um usuário
 app.post("/tasks", async (req: Request, res: Response) => {
   const { id, title, description, deadline, status, pendingUser } = req.body;
   try {
@@ -98,7 +97,7 @@ VALUES(
   }
 });
 
-//PEGAR TASK POR ID:
+//5 + 11) PEGAR TASK POR ID:
 app.get("/tasks/:id", async (req: Request, res: Response) => {
   const id: string = req.params.id;
   try {
@@ -113,6 +112,73 @@ SELECT * FROM TasksToDoList WHERE id = '${id}'
     res.status(500).send(error.message);
   }
 });
+
+//6) PEGAR TODOS OS USERS:
+
+app.get("/users", async (req: Request, res: Response) => {
+  try {
+    const allUsers = await connection.raw(`
+
+SELECT * FROM UserToDoList 
+
+
+`);
+    res.status(200).send(allUsers[0]);
+  } catch (error: any) {
+    res.status(500).send(error.message);
+  }
+});
+
+//7) PEGAR TASK POR USUÁRIO:
+
+app.get("/tasksbyuser/:pendingUser", async (req: Request, res: Response) => {
+  const pendingUser: string = req.params.pendingUser;
+  let errorCode = 500;
+  try {
+    const taskByUser = await connection.raw(`
+
+SELECT * FROM TasksToDoList WHERE pendingUser = '${pendingUser}'
+
+
+`);
+    if (!pendingUser) {
+      errorCode = 422;
+      throw new Error("Usuário ainda não criou tasks");
+      //Não consigo fazer a mensagem de erro aparecer
+    }
+    res.status(200).send(taskByUser[0][0]);
+  } catch (error: any) {
+    console.log("Usuário ainda não criou tasks");
+    res.status(errorCode).send(error.message);
+  }
+});
+
+//8) Search User:
+
+app.get("/usersByQuery", async (req: Request, res: Response) => {
+  try {
+    const { id, name, nickname, email } = req.query;
+
+    const allUsers = await connection.raw(`
+
+SELECT * FROM UserToDoList WHERE id = '${id}' OR name = '${name}' OR nickname = '${nickname}' OR email = '${email}'
+
+
+`);
+    res.status(200).send(allUsers[0]);
+  } catch (error: any) {
+    res.status(500).send(error.message);
+  }
+});
+
+//9) Conferir questão 4
+
+//10) Pegar usuários responsáveis por uma tarefa:
+//Juntar tabelas?
+
+//11) Conferir Atividade 5
+
+//12)
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
