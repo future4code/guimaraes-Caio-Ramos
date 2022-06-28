@@ -1,0 +1,24 @@
+//getAllUsers:
+GET http://localhost:3003/users
+###
+//getUsersByName:
+GET http://localhost:3003/users?name=Chijo
+###
+//getUsersByType:
+GET http://localhost:3003/users/:type
+###
+//getSortedUsersByAsc:
+GET http://localhost:3003/users?sort=type&order=DESC
+###
+//getUsersPag:
+GET http://localhost:3003/users?size=3$page=1
+###
+//getAllUsers:
+GET http://localhost:3003/users
+###
+//getAllUsers:
+GET http://localhost:3003/users
+###
+//getAllUsers:
+GET http://localhost:3003/users
+###
