@@ -6,7 +6,7 @@ import { getUsersByType } from "./endpoints/getUsersByType";
 import { getSortedUsersByAsc } from "./endpoints/getSortedUsersByAsc";
 import { getUsersPag } from "./endpoints/getUsersPagination";
 app.get("/users", getAllUsers);
-app.get("/users", getUsersByName);
+app.get("/users/name", getUsersByName);
 app.get("/users/:type", getUsersByType);
 app.get("/users", getSortedUsersByAsc);
 app.get("/users", getUsersPag);

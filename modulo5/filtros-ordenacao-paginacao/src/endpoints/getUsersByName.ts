@@ -5,7 +5,7 @@ import { connection } from "../data/connection";
 //import { user } from "../types";
 
 export const getUsersByName = async (req: Request, res: Response) => {
-  const name = req.query.name as string;
+  let name = req.query.name as string;
   let errorCode = 500;
   try {
     let userByName = await connection.raw(`
