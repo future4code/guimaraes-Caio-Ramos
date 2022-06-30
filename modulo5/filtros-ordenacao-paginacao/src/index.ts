@@ -1,0 +1,13 @@
+import { app } from "./app";
+//import { getAllRecipes } from "./endpoints/getAllRecipes";
+import { getUsersByName } from "./endpoints/getUsersByName";
+import { getAllUsers } from "./endpoints/getAllUsers";
+import { getUsersByType } from "./endpoints/getUsersByType";
+import { getSortedUsersByAsc } from "./endpoints/getSortedUsersByAsc";
+import { getUsersPag } from "./endpoints/getUsersPagination";
+app.get("/users", getAllUsers);
+app.get("/users/name", getUsersByName);
+app.get("/users/:type", getUsersByType);
+app.get("/users", getSortedUsersByAsc);
+app.get("/users", getUsersPag);
+//app.get("/recipes", getAllRecipes);
