@@ -8,6 +8,10 @@ GET http://localhost:3003/products
 
 GET http://localhost:3003/productValue/36bf7ca7-5ce2-4a56-a226-646707356aee
 ###
+
+GET http://localhost:3003/users/b74afa45-bfcc-4012-8c0c-fdd5f3866445/purchases
+
+
 DELETE http://localhost:3003/users/5c7af8dc-d613-49a9-9776-8279d21127c1
 ###
 
@@ -34,8 +38,8 @@ POST http://localhost:3003/purchases
 Content-Type: application/json
 
 {
-"user_id":"187dc105-7daf-4149-ae4a-e30b05cfdcb6",
-"product_id": "d3df5cd4-bec3-4376-86eb-5499ef5038be",
-"quantity":3
+"user_id":"f282fea2-ac65-40d6-bbca-135ba24118ad",
+"product_id": "40d65437-9940-43f0-8ede-8227e54ac954",
+"quantity":20
 }
 ###

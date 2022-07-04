@@ -13,7 +13,7 @@ const createProduct = async (req: Request, res: Response): Promise<void> => {
         "Procedure can't be completed without a name, a price or an image_url. Please review your information."
       );
     }
-    const newProduct = await connection("labecommerce_products").insert({
+    await connection("labecommerce_products").insert({
       id: newId,
       name: name,
       price: price,
