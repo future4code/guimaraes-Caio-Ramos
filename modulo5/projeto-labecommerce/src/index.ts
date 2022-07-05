@@ -10,6 +10,7 @@ import getAllProducts from "./endpoints/getAllProducts";
 import deleteUsers from "./endpoints/deleteUsers";
 import createPurchase from "./endpoints/createPurchase";
 import getproductsByUserId from "./endpoints/getProductsById";
+import getAllPurchases from "./endpoints/getAllPurchases";
 //middlewares
 const app = express();
 app.use(express.json());
@@ -18,7 +19,7 @@ app.use(cors());
 //GET stuff:
 app.get("/users", getAllUsers);
 app.get("/products", getAllProducts);
-app.get("/productValue/:id");
+app.get("/purchases", getAllPurchases);
 app.get("/users/:user_id/purchases", getproductsByUserId);
 
 //CREATE stuff:

@@ -11,6 +11,9 @@ GET http://localhost:3003/productValue/36bf7ca7-5ce2-4a56-a226-646707356aee
 
 GET http://localhost:3003/users/b74afa45-bfcc-4012-8c0c-fdd5f3866445/purchases
 
+###
+
+http://localhost:3003/purchases
 
 DELETE http://localhost:3003/users/5c7af8dc-d613-49a9-9776-8279d21127c1
 ###
