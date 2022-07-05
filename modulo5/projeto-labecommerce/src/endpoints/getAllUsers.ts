@@ -11,10 +11,13 @@ const getAllUsers = async (req: Request, res: Response): Promise<void> => {
       "SELECT * FROM character2"
     );
     res.send(result[0]); */
+
     //const resultsPerPage = 5;
+
     //pag 1 -> offset 0 === 5 * 0
     //pag 2 -> offset 5 === 5 * 1
-    //pag 3 -> offset 10 ===5 * 2
+    //pag 3 -> offset 10 === 5 * 2
+
     //const offset = resultsPerPage * (Number(page) - 1);
 
     const allUsers = await connection("labecommerce_users");

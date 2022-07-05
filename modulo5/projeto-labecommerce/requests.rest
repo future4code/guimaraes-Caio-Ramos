@@ -3,7 +3,7 @@
 GET http://localhost:3003/users
 ###
 
-GET http://localhost:3003/products
+GET http://localhost:3003/products?name=%&orderType=DESC
 ###
 
 GET http://localhost:3003/productValue/36bf7ca7-5ce2-4a56-a226-646707356aee
