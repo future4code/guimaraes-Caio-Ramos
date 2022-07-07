@@ -10,7 +10,9 @@ const getAllUsers = async (req: Request, res: Response): Promise<void> => {
         this.on("labecommerce_purchases.user_id", "=", "labecommerce_users.id");
       }
     );
-
+//PEGA TODOS OS USUÁRIOS
+//FAZ UM MAP SOBRE O ARRAY DE USUÁRIOS
+//PEGA A PURCHASE
     res.status(200).send(usersAndPurchases);
   } catch (error) {
     console.log(error);
