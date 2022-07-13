@@ -3,20 +3,23 @@ export class Transaction {
   private value: number;
   private date: string;
   constructor(description: string, value: number, date: string) {
-    (this.description = description), (this.value = value), (this.date = date);
+    console.log("Chamando o construtor da classe Transaction"),
+      (this.description = description),
+      (this.value = value),
+      (this.date = date);
   }
 
   //Getters:
 
-  getDescription = (): string => {
+  getDescription(): string {
     return this.description;
-  };
+  }
 
-  getValue = (): number => {
+  getValue(): number {
     return this.value;
-  };
+  }
 
-  getDate = (): string => {
+  getDate(): string {
     return this.date;
-  };
+  }
 }
