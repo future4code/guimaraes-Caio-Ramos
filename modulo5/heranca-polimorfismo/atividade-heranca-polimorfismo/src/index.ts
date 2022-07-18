@@ -94,6 +94,20 @@ console.log(industryCEP);
 //3-B: Place é uma classe porque precisa ter um acesso restrito a um dos seus atributos, o que é impossível de se fazer em interfaces.
 //3-C: Place é abstrata porque não enxergamos uma situação em que seria necessário criar uma instância dessa classe.
 
+
+//Exercício Polimorfismo 4:
+//4-A Possui dois métodos: getCPF e calculateBill.
+
+
+//Exercício Polimorfismo 5:
+//5-A: Semelhanças: a estrutura é basicamente a mesma, pois puxa a interface de Clients, além de, estruturalmente, Commerce ser muito parecido com Residence
+//5-B: o método calculateBill retorna um cálculo diferente e agora temos o método getCNPJ
+
+
+//Exercício Polimorfismo 6:
+//6-A: Deve ser filha de Industry
+//6-B: Deve implementar Client, pois 
+
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
