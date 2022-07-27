@@ -1,0 +1,10 @@
+POST http://localhost:3003/createuser
+Content-Type: application/json 
+
+{
+"name":"Banager Briggs",
+"email":"reiam@mail.com",
+"password":"un1corn"
+}
+
+
