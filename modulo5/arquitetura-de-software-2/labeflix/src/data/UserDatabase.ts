@@ -1,5 +1,5 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { User } from "../types/User";
+import { User } from "../Classes/User";
 export class UserDatabase extends BaseDatabase {
   private TABLE_NAME = "LABEFLIX_USER";
 

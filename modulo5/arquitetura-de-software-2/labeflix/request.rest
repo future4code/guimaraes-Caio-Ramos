@@ -2,9 +2,28 @@ POST http://localhost:3003/user/create
 Content-Type: application/json
 
 {
-    "name": "teste",
-    "email": "email@email.com",
-    "password": "23432535"
+    "name": "Laine",
+    "email": "lala@email.com",
+    "password": "96741832"
 }
 
+###
 
+GET http://localhost:3003/user/getall
+
+
+###
+
+
+POST http://localhost:3003/movie/create
+Content-Type: application/json
+
+{"title":"Arremessando Alto",
+"description":"Um caçador de talentos do basquete descobre um fenomenal jogador de rua enquanto está na Espanha e vê essa perspectiva como sua chance de voltar à NBA.",
+"duration_in_minutes":117,
+"year_of_release":2022
+}
+
+###
+GET http://localhost:3003/movie/getall
+###

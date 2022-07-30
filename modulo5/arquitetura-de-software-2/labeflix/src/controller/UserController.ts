@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { User } from "../types/User";
+import { User } from "../Classes/User";
 
 export class UserController {
   async create(req: Request, res: Response): Promise<void> {
