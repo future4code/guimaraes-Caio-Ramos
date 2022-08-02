@@ -1,0 +1,20 @@
+
+
+POST http://localhost:3003/createuser
+Content-Type: application/json 
+
+{
+"name":"Casval Rem Deikun",
+"email":"heirofzeon@mail.com",
+"password":"thebearerofroyalblood"
+}
+
+###
+
+GET http://localhost:3003/all
+
+###
+
+DELETE http://localhost:3003/b4b7730a-0015-4fd4-adeb-eaf48d808f38
+
+
