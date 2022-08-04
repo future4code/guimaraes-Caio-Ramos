@@ -1,14 +1,14 @@
 import { MovieDatabase } from "../data/MovieDatabase";
-import { v4 as generateId } from "uuid";
-import { Movie } from "../Classes/Movie";
-
+import { generateId } from '../services/generateId';
+import { Movie } from '../Classes/Movie';
+import { createMovieDTO } from '../model/createMovieDTO';
 export class MovieBusiness {
   async create({
     title,
     description,
     duration_in_minutes,
     year_of_release,
-  }: any): Promise<void> {
+  }: createMovieDTO): Promise<void> {
     if (!title || !description || !duration_in_minutes || !year_of_release) {
       throw new Error(
         "Dados inválidos (title, description, duration_in_minutes, year_of_release)"
