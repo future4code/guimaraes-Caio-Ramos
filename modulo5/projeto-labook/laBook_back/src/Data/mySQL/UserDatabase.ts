@@ -1,5 +1,5 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { user } from "../Types/user";
+import { user } from "../../Types/user";
 
 export class UserDatabase extends BaseDatabase {
   private TABLE_NAME = "labook_users";
