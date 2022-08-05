@@ -14,6 +14,4 @@ export class UserDatabase extends BaseDatabase {
       .insert({ id, name, email, password })
       .into(this.TABLE_NAME);
   };
-
-  
 }
