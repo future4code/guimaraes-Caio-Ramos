@@ -22,4 +22,9 @@ export class UserBusiness {
       throw new Error(error.message);
     }
   };
+
+  public getAll = async (): Promise<user[]> => {
+    const result = await this.userDatabase.getAllUsers();
+    return result;
+  };
 }

@@ -1,5 +1,4 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { user } from "../../Types/user";
 import { post } from "../../Types/post";
 export class PostDatabase extends BaseDatabase {
   private TABLE_NAME = "labook_posts";

@@ -10,3 +10,4 @@ const userBusiness = new UserBusiness(userDatabase);
 const userController = new UserController(userBusiness);
 
 userRouter.post("/create", (req, res) => userController.createUser(req, res));
+userRouter.get("/getAll", (req, res) => userController.getAll(req, res));

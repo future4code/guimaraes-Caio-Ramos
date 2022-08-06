@@ -3,3 +3,4 @@ import { userRouter } from "./Controller/Routes/userRouter";
 //importar ROUTERS
 
 app.use("/user", userRouter);
+//app.use("/posts",)

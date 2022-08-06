@@ -14,8 +14,16 @@ export class UserController {
       await this.userBusiness.createUser(input);
 
       res.status(201).send({ message: "Usuário criado!" });
-    } catch (error:any) {
-      res.status(400).send(error.message)
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  };
+  public getAll = async (req: Request, res: Response) => {
+    try {
+      const users = await this.userBusiness.getAll();
+      res.status(200).send(users);
+    } catch (error: any) {
+      res.status(400).send(error.message);
     }
   };
 }
