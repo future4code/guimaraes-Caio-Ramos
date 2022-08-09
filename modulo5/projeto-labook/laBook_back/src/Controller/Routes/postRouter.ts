@@ -11,3 +11,4 @@ const postController = new PostController(postBusiness);
 
 postRouter.post("/create", (req, res) => postController.createPost(req, res));
 postRouter.get("/getAll", (req, res) => postController.getAllPosts(req, res));
+postRouter.get("/get/:id", (req, res) => postController.getPostById(req, res));

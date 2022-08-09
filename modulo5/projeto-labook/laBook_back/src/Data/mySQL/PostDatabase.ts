@@ -28,4 +28,18 @@ export class PostDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   };
+  public getPostById = async (id: string): Promise<post[]> => {
+    try {
+      const posts: post[] = [];
+      const result = await PostDatabase.connection(this.TABLE_NAME)
+        .where({ id: id })
+        .select("*");
+      for (let post of result) {
+        posts.push(post);
+      }
+      return posts;
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  };
 }

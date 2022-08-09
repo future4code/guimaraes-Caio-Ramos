@@ -33,4 +33,11 @@ export class PostBusiness {
       throw new Error(error.message);
     }
   };
+  public getPostById = async(id:string):Promise<post[]>=>{
+    try {
+    const post = await this.postDB.getPostById(id)
+    return post;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }}
 }

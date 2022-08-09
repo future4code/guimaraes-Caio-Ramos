@@ -22,4 +22,13 @@ export class PostController {
       res.status(400).send(error.message);
     }
   };
+  getPostById = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const post = await this.postBusiness.getPostById(id);
+      res.status(200).send(post);
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  };
 }
