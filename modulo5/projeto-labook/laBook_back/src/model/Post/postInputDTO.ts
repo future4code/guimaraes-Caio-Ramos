@@ -1,4 +1,4 @@
-import { POST_TYPES } from "../Types/post";
+import { POST_TYPES } from "../../Types/post";
 
 export interface postInputDTO {
   photo: string;

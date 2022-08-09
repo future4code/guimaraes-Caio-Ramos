@@ -1,4 +1,5 @@
-import { userInputDTO } from "../model/userInputDTO";
+import { addFriendDTO } from "../model/User/addFriendDTO";
+import { userInputDTO } from "../model/User/userInputDTO";
 import { generateId } from "../services/generateId";
 import { user } from "../Types/user";
 import { UserRepository } from "./repository/UserRepository";
@@ -24,7 +25,21 @@ export class UserBusiness {
   };
 
   public getAll = async (): Promise<user[]> => {
-    const result = await this.userDatabase.getAllUsers();
-    return result;
+    try {
+      const result = await this.userDatabase.getAllUsers();
+      return result;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  public addFriend = async (input: addFriendDTO): Promise<void> => {
+    try {
+      const { id, friend } = input;
+      const newFriend = { id, friend };
+      await this.userDatabase.addFriend(newFriend);
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
   };
 }

@@ -29,4 +29,13 @@ export class UserDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   };
+  public addFriend = async (id: string, friend: string): Promise<void> => {
+    try {
+      await UserDatabase.connection(this.TABLE_NAME)
+        .where({ id: id })
+        .update({ friend: friend });
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  };
 }

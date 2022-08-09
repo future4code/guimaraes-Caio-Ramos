@@ -1,4 +1,4 @@
-import { postInputDTO } from "../model/postInputDTO";
+import { postInputDTO } from "../model/Post/postInputDTO";
 import { creationMoment } from "../services/creationMoment";
 import { generateId } from "../services/generateId";
 import { post } from "../Types/post";

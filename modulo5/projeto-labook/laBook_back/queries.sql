@@ -14,4 +14,7 @@ CREATE TABLE IF NOT EXISTS labook_posts(
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
          author_id VARCHAR(255),
          FOREIGN KEY (author_id) REFERENCES labook_users (id)
-      )
+      );
+
+ALTER TABLE labook_users
+ADD friends VARCHAR(255);

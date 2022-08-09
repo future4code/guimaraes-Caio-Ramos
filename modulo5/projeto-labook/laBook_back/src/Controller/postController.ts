@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../Business/PostBusiness";
-import { postInputDTO } from "../model/postInputDTO";
+import { postInputDTO } from "../model/Post/postInputDTO";
 
 export class PostController {
   constructor(private postBusiness: PostBusiness) {}
