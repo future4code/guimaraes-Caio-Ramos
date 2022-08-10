@@ -1,5 +1,6 @@
 import { BaseDatabase } from "./BaseDatabase";
 import { user } from "../../Types/user";
+import { friendRelation } from "../../Types/friendRelation";
 
 export class UserDatabase extends BaseDatabase {
   private TABLE_NAME = "labook_users";
@@ -10,9 +11,13 @@ export class UserDatabase extends BaseDatabase {
     email,
     password,
   }: user): Promise<void> => {
-    await UserDatabase.connection
-      .insert({ id, name, email, password })
-      .into(this.TABLE_NAME);
+    try {
+      await UserDatabase.connection
+        .insert({ id, name, email, password })
+        .into(this.TABLE_NAME);
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
   };
 
   public getAllUsers = async (): Promise<user[]> => {
@@ -29,13 +34,26 @@ export class UserDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   };
-  public addFriend = async (id: string, friends: string): Promise<void> => {
+  public addFriend = async ({
+    id,
+    friend1_id,
+    friend2_id,
+  }: friendRelation): Promise<void> => {
     try {
-      await UserDatabase.connection(this.TABLE_NAME)
-        .where({ id: id })
-        .update({ friends: friends });
+      await UserDatabase.connection
+        .insert({ id, friend1_id, friend2_id })
+        .into("relational_friends");
     } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }
   };
+  /* public undoFriendship = async (friends: string): Promise<void> => {
+    try {
+      await UserDatabase.connection(this.TABLE_NAME)
+        .where({ friends: friends })
+        .del();
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }; */
 }

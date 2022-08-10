@@ -2,6 +2,7 @@ import { addFriendDTO } from "../model/User/addFriendDTO";
 import { userInputDTO } from "../model/User/userInputDTO";
 import { generateId } from "../services/generateId";
 import { user } from "../Types/user";
+import { friendRelation } from "../Types/friendRelation";
 import { UserRepository } from "./repository/UserRepository";
 
 export class UserBusiness {
@@ -20,7 +21,7 @@ export class UserBusiness {
       const user: user = { id, name, email, password };
       await this.userDatabase.createUser(user);
     } catch (error: any) {
-      throw new Error(error.message);
+      throw new Error(error.sqlMessage || error.message);
     }
   };
 
@@ -35,11 +36,12 @@ export class UserBusiness {
 
   public addFriend = async (input: addFriendDTO): Promise<void> => {
     try {
-      const { id, friends } = input;
-      //const newFriend = { id, friend };
-      await this.userDatabase.addFriend(id, friends);
+      const { friend1_id, friend2_id } = input;
+      const id: string = generateId();
+      const newFriends: friendRelation = { id, friend1_id, friend2_id };
+      await this.userDatabase.addFriend(newFriends);
     } catch (error: any) {
-      throw new Error(error.message);
+      throw new Error(error.sqlMessage || error.message);
     }
   };
 }

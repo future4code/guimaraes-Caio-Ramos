@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UserBusiness } from "../Business/UserBusiness";
 import { userInputDTO } from "../model/User/userInputDTO";
 import { addFriendDTO } from "../model/User/addFriendDTO";
+import { friendRelation } from "../Types/friendRelation";
 
 export class UserController {
   constructor(private userBusiness: UserBusiness) {}
@@ -29,10 +30,8 @@ export class UserController {
   };
   public addFriend = async (req: Request, res: Response) => {
     try {
-      //id-> it's the user's id
-      //friend -> it's the friend's id
-      const { id, friends } = req.body;
-      const input: addFriendDTO = { id, friends };
+      const { friend1_id, friend2_id } = req.body;
+      const input: addFriendDTO = { friend1_id, friend2_id };
       await this.userBusiness.addFriend(input);
       res.status(200).send({ message: "Mais que amigos, FRIENDS!" });
     } catch (error: any) {

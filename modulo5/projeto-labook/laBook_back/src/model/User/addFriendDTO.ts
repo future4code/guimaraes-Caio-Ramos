@@ -1,4 +1,4 @@
 export interface addFriendDTO {
-  id: string;
-  friends: string;
+  friend1_id: string;
+  friend2_id: string;
 }

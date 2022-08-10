@@ -18,3 +18,13 @@ CREATE TABLE IF NOT EXISTS labook_posts(
 
 ALTER TABLE labook_users
 ADD friends VARCHAR(255);
+ALTER TABLE labook_users
+DROP COLUMN friends;
+
+CREATE TABLE IF NOT EXISTS relational_friends(
+id VARCHAR(255) PRIMARY KEY,
+friend1_id VARCHAR(255), 
+FOREIGN KEY (friend1_id) REFERENCES labook_users(id), 
+friend2_id VARCHAR(255), 
+FOREIGN KEY (friend2_id) REFERENCES labook_users(id)
+);
