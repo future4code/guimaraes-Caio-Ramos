@@ -35,9 +35,9 @@ export class UserBusiness {
 
   public addFriend = async (input: addFriendDTO): Promise<void> => {
     try {
-      const { id, friend } = input;
-      const newFriend = { id, friend };
-      await this.userDatabase.addFriend(newFriend);
+      const { id, friends } = input;
+      //const newFriend = { id, friend };
+      await this.userDatabase.addFriend(id, friends);
     } catch (error: any) {
       throw new Error(error.message);
     }

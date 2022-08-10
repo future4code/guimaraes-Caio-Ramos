@@ -11,3 +11,4 @@ const userController = new UserController(userBusiness);
 
 userRouter.post("/create", (req, res) => userController.createUser(req, res));
 userRouter.get("/getAll", (req, res) => userController.getAll(req, res));
+userRouter.put("/addFriend", (req, res) => userController.addFriend(req, res));
