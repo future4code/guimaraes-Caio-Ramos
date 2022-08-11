@@ -3,6 +3,7 @@ import { UserBusiness } from "../Business/UserBusiness";
 import { userInputDTO } from "../model/User/userInputDTO";
 import { addFriendDTO } from "../model/User/addFriendDTO";
 import { friendRelation } from "../Types/friendRelation";
+import { undoFriendshipDTO } from "../model/User/undoFriendshipDTO";
 
 export class UserController {
   constructor(private userBusiness: UserBusiness) {}
@@ -36,6 +37,24 @@ export class UserController {
       res.status(200).send({ message: "Mais que amigos, FRIENDS!" });
     } catch (error: any) {
       res.status(400).send(error.message);
+    }
+  };
+  public checkFriends = async (req: Request, res: Response) => {
+    try {
+      const friends = await this.userBusiness.checkFriends();
+      res.status(200).send(friends);
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  };
+  public undoFriendship = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const input: undoFriendshipDTO = { id };
+      await this.userBusiness.undoFriendship(input);
+      res.status(200).send({ message: "Amizade encerrada com contatinho." });
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
     }
   };
 }

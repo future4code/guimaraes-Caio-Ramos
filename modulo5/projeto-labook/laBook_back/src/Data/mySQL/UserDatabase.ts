@@ -47,13 +47,28 @@ export class UserDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   };
-  /* public undoFriendship = async (friends: string): Promise<void> => {
+
+  public checkFriends = async (): Promise<friendRelation[]> => {
     try {
-      await UserDatabase.connection(this.TABLE_NAME)
-        .where({ friends: friends })
+      const friends: friendRelation[] = [];
+      const result = await UserDatabase.connection()
+        .select("*")
+        .from("relational_friends");
+      for (let friend of result) {
+        friends.push(friend);
+      }
+      return friends;
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  };
+  public undoFriendship = async (id: string): Promise<void> => {
+    try {
+      await UserDatabase.connection("relational_friends")
+        .where({ id: id })
         .del();
     } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }
-  }; */
+  };
 }
