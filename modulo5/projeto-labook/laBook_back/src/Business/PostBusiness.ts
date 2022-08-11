@@ -1,7 +1,9 @@
+import { PostDatabase } from "../Data/mySQL/PostDatabase";
 import { postInputDTO } from "../model/Post/postInputDTO";
 import { creationMoment } from "../services/creationMoment";
 import { generateId } from "../services/generateId";
 import { post } from "../Types/post";
+import { postFeedJoin } from "../Types/postFeedJoin";
 import { PostRepository } from "./repository/PostRepository";
 
 export class PostBusiness {
@@ -33,11 +35,27 @@ export class PostBusiness {
       throw new Error(error.message);
     }
   };
-  public getPostById = async(id:string):Promise<post[]>=>{
+  public getPostById = async (id: string): Promise<post[]> => {
     try {
-    const post = await this.postDB.getPostById(id)
-    return post;
-  } catch (error: any) {
-    throw new Error(error.message);
-  }}
+      const post = await this.postDB.getPostById(id);
+      return post;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+  public showFriendsPosts = async (
+    author_id: string,
+    friend2_id: string
+  ): Promise<postFeedJoin[]> => {
+    try {
+      const friendsFeed = await this.postDB.showFriendsPosts(
+        author_id,
+        friend2_id
+      );
+
+      return friendsFeed;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
 }

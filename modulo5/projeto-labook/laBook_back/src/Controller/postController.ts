@@ -31,4 +31,17 @@ export class PostController {
       res.status(400).send(error.message);
     }
   };
+  showFriendsPosts = async (req: Request, res: Response) => {
+    try {
+      const { author_id } = req.params;
+      const { friend2_id } = req.body;
+      const friendsFeed = await this.postBusiness.showFriendsPosts(
+        author_id,
+        friend2_id
+      );
+      res.status(200).send(friendsFeed);
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  };
 }

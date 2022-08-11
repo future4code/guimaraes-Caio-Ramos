@@ -57,4 +57,5 @@ export class UserController {
       throw new Error(error.sqlMessage || error.message);
     }
   };
+  
 }
