@@ -1,4 +1,5 @@
 import { app } from "./app";
+import { userRouter } from './Controller/Routes/UserRouter';
 //importar ROUTERS
 
-app.use();
+app.use("/user/", userRouter);
