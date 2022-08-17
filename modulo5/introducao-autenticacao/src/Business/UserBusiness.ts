@@ -40,4 +40,13 @@ export class UserBusiness {
       throw new CustomError(400, error.message);
     }
   };
+  public getUserById = async (id: string): Promise<User> => {
+    try {
+      const userDB = new UserDatabase();
+      const result = await userDB.getUserByEmail(id);
+      return result;
+    } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  };
 }

@@ -14,4 +14,15 @@ export class UserController {
       res.status(400).send(error.message);
     }
   };
+  public getUserById = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const userBizz = new UserBusiness();
+      const userById = await userBizz.getUserById(id);
+
+      res.status(201).send(userById);
+    } catch (error: any) {
+      res.status(400).send(error.message);
+    }
+  };
 }
