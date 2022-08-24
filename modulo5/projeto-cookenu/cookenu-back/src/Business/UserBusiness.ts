@@ -1,11 +1,14 @@
 import { UserDatabase } from "../Data/UserDatabase";
 import {
   CustomError,
+  EmailDoesntExists,
   InvalidEmail,
+  InvalidPassword,
   SmallName,
   SmallPassword,
 } from "../Error/CustomError";
-import { User, UserInputDTO } from "../Model/Types/User";
+import { AuthenticationData } from "../Model/Types/AuthenticationData";
+import { LoginUserInputDTO, User, UserInputDTO } from "../Model/Types/User";
 import Authenticator from "../Services/Authenticator";
 import IdGenerator from "../Services/GenerateId";
 import HashManager from "../Services/HashManager";
@@ -36,6 +39,32 @@ export class UserBusiness {
       await this.userDB.insertUser(user);
       const token = Authenticator.generateToken({ id });
       return token;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+  public login = async (input: LoginUserInputDTO) => {
+    try {
+      const { email, password } = input;
+      if (!email || !password) {
+        throw new CustomError(400, "Ausência de parâmetros");
+      }
+      if (!email.includes("@")) {
+        throw new InvalidEmail();
+      }
+
+      const user = await this.userDB.findUserByEmail(email);
+
+      const hashCompare = await HashManager.compareHash(
+        password,
+        user.password
+      );
+
+      if (!hashCompare) {
+        throw new InvalidPassword();
+      }
+      const payload: AuthenticationData = { id: user.id };
+      return payload;
     } catch (error: any) {
       throw new Error(error.message);
     }
