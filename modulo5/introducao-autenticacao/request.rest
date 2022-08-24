@@ -1,0 +1,14 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Mary Jane", 
+   "nickname": "Jackpot", 
+   "email": "mjwatsonparker@oscorp.com" ,
+   "password": "getemtiger"
+}
+
+###
+GET http://localhost:3003/user/getbyid/d85a4a2a-6339-4873-9f75-4efd444b2fcf
+
+###
