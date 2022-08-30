@@ -1,0 +1,5 @@
+-- Active: 1658925567615@@35.226.146.116@3306@guimaraes-4211155-caio-ramos
+
+
+ALTER TABLE Auth_users
+ADD role ENUM("NORMAL", "ADMIN") DEFAULT "NORMAL"

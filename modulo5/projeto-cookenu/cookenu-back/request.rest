@@ -1,0 +1,20 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+  "name":"Camila Coradi Garcia Leal",
+  "email":"mila@mail.com",
+  "password":"itsamemila"
+}
+###
+
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+  {
+  "email":"mila@mail.com",
+  "password":"itsamemila"
+  }
+
+###
